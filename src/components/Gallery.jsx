@@ -11,7 +11,7 @@ const Gallery = () => {
   const images = [
     {
       src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      alt: 'Conference presentation'
+      alt: 'ARM presentation'
     },
     {
       src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
@@ -50,10 +50,10 @@ const Gallery = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-            Conference Gallery
+            ARM Gallery
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Highlights from our previous conferences and events
+            Highlights from our previous ARM and events
           </p>
         </motion.div>
 

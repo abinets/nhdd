@@ -74,7 +74,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-800">Phone</p>
-                    <p className="text-gray-600">+1 (514) 555-2025</p>
+                    <p className="text-gray-600">+251 (914) 555-2025</p>
                   </div>
                 </div>
 
@@ -85,8 +85,8 @@ const Contact = () => {
                   <div>
                     <p className="font-semibold text-gray-800">Address</p>
                     <p className="text-gray-600">
-                      Palais des congrès de Montréal<br />
-                      Montreal, QC, Canada
+                      Aba Jifar center<br />
+                      Jimma, City, Oromia
                     </p>
                   </div>
                 </div>

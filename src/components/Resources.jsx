@@ -5,16 +5,16 @@ import * as FiIcons from 'react-icons/fi';
 
 const { FiCheck, FiUser, FiUsers } = FiIcons;
 
-const Pricing = () => {
-  const pricingPlans = [
+const Resources = () => {
+  const ResourcesPlans = [
     {
-      title: 'Student',
+      title: 'Annual Reports',
       earlyBird: 99,
       standard: 129,
       icon: FiUser,
       features: [
         'Access to all sessions',
-        'Conference materials',
+        'ARM materials',
         'Networking events',
         'Certificate of attendance',
         'Student ID required'
@@ -22,13 +22,44 @@ const Pricing = () => {
       popular: false
     },
     {
-      title: 'Professional',
+      title: 'Fact Sheets',
       earlyBird: 249,
       standard: 299,
       icon: FiUsers,
       features: [
         'Access to all sessions',
-        'Conference materials',
+        'ARM materials',
+        'Networking events',
+        'Certificate of attendance',
+        'Workshop access',
+        'Lunch included',
+        'Continuing education credits'
+      ],
+      popular: true
+    },    {
+      title: 'Guidlines',
+      earlyBird: 249,
+      standard: 299,
+      icon: FiUsers,
+      features: [
+        'Access to all sessions',
+        'ARM materials',
+        'Networking events',
+        'Certificate of attendance',
+        'Workshop access',
+        'Lunch included',
+        'Continuing education credits'
+      ],
+      popular: true
+    },
+        {
+      title: 'Other Resources',
+      earlyBird: 249,
+      standard: 299,
+      icon: FiUsers,
+      features: [
+        'Access to all sessions',
+        'ARM materials',
         'Networking events',
         'Certificate of attendance',
         'Workshop access',
@@ -40,7 +71,7 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-white" style={{ scrollMarginTop: '80px' }}>
+    <section id="Resources" className="py-20 bg-white" style={{ scrollMarginTop: '80px' }}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -50,20 +81,20 @@ const Pricing = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-            Conference Pricing
+            ARM Resources
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
             Choose the registration option that best fits your needs
           </p>
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 max-w-md mx-auto">
             <p className="text-red-700 font-semibold">
-              Early Bird pricing ends August 15, 2025
+              Registration ends September 15, 2025
             </p>
           </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {pricingPlans.map((plan, index) => (
+          {ResourcesPlans.map((plan, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -91,15 +122,15 @@ const Pricing = () => {
                   </h3>
                   <div className="space-y-2">
                     <div className="flex items-center justify-center space-x-2">
-                      <span className="text-sm text-gray-500">Early Bird:</span>
+                      <span className="text-sm text-gray-500">PDF Files:</span>
                       <span className="text-3xl font-bold text-green-600">
-                        ${plan.earlyBird}
+                        {plan.earlyBird}
                       </span>
                     </div>
                     <div className="flex items-center justify-center space-x-2">
-                      <span className="text-sm text-gray-500">Standard:</span>
+                      <span className="text-sm text-gray-500">Other Resources:</span>
                       <span className="text-2xl font-bold text-gray-700">
-                        ${plan.standard}
+                        {plan.standard}
                       </span>
                     </div>
                   </div>
@@ -140,4 +171,4 @@ const Pricing = () => {
   );
 };
 
-export default Pricing;
+export default Resources;

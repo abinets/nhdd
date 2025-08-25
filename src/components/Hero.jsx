@@ -5,6 +5,38 @@ import * as FiIcons from 'react-icons/fi';
 
 const { FiCalendar, FiMapPin, FiClock } = FiIcons;
 
+// Break the text into an array of characters
+const text = "Annual Review Meeting";
+const characters = Array.from(text);
+
+// Define variants for the parent container (h1) to stagger child animations
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05, 
+    },
+  },
+};
+
+// Define variants for each individual character (span)
+const characterVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    // New: Animate the color to a light blue and add a wavering scale effect
+    color: ['#FFFFFF', '#40E0D0'], // Animate to a light cyan color
+    scale: [1, 1.1, 1], // Increased the bounce effect to 1.1
+    transition: {
+      repeat: Infinity,
+      repeatType: "mirror",
+      duration: 1.5,
+    },
+  },
+};
+
 const Hero = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -37,13 +69,15 @@ const Hero = () => {
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ paddingTop: '80px' }}>
       {/* Background with blur overlay */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
-          }}
+        <iframe 
+          className="absolute inset-0 w-full h-full object-cover"
+          src="https://www.youtube.com/embed/pgjORbFCwVo?autoplay=1&mute=1&loop=1&playlist=pgjORbFCwVo&controls=0&modestbranding=1"
+          title="Background video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/85 to-blue-900/80 backdrop-blur-sm" />
+        {/* Updated: Reduced the opacity of the gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-blue-800/50 to-blue-900/40 backdrop-blur-sm" />
       </div>
       
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
@@ -56,29 +90,50 @@ const Hero = () => {
           <div className="mb-6">
             <motion.h1 
               className="text-5xl md:text-7xl font-bold leading-tight mb-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
             >
-              Global Cardio Summit
+              {characters.map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={characterVariants}
+                  style={{ display: 'inline-block' }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
             </motion.h1>
+            
             <motion.span 
-              className="block text-red-500 text-4xl md:text-6xl font-bold"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              // Changed size, color, and reduced duration
+              className="block text-5xl md:text-7xl font-bold text-cyan-400"
+              initial={{ opacity: 0, scale: 0.8, y: 0 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                y: [0, -10, 0]
+              }}
+              transition={{ 
+                duration: 1, // Reduced duration for a faster animation
+                delay: 0.6,
+                repeat: Infinity,
+                repeatType: "mirror",
+                ease: "easeInOut"
+              }}
             >
               2025
             </motion.span>
           </div>
           
           <motion.p 
-            className="text-xl md:text-2xl mb-8 text-blue-100 font-light"
+            // Made the text bold
+            className="text-xl md:text-2xl mb-8 text-blue-100 font-bold"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            Advancing Cardiovascular Health Through Innovation
+            Advancing Health Care Service Through Digitilization
           </motion.p>
           
           <motion.div 
@@ -93,7 +148,7 @@ const Hero = () => {
             </div>
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiMapPin} className="w-6 h-6 text-red-500" />
-              <span className="text-lg">Montreal, Canada</span>
+              <span className="text-lg">Jimma, Oromia Region</span>
             </div>
           </motion.div>
           

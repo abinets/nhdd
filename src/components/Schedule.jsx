@@ -16,7 +16,7 @@ const Schedule = () => {
         { time: '9:00 AM', title: 'Opening Ceremony & Keynote', speaker: 'Dr. Emily Chen' },
         { time: '10:30 AM', title: 'AI in Cardiac Diagnostics', speaker: 'Dr. Ahmed Yusuf' },
         { time: '12:00 PM', title: 'Lunch & Networking', speaker: '' },
-        { time: '1:30 PM', title: 'Gender-Based Cardiovascular Care', speaker: 'Dr. Sophie Gagnon' },
+        { time: '1:30 PM', title: 'Gender-Based Health Care', speaker: 'Dr. Sophie Gagnon' },
         { time: '3:00 PM', title: 'Interventional Cardiology Workshop', speaker: 'Dr. Lucas Moreau' },
         { time: '4:30 PM', title: 'Panel Discussion: Future of Cardiology', speaker: 'All Speakers' }
       ]

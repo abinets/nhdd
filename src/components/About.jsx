@@ -9,12 +9,12 @@ const About = () => {
   const highlights = [
     {
       icon: FiMic,
-      title: '40+ Sessions',
-      description: 'Comprehensive presentations covering the latest in cardiovascular research and clinical practice'
+      title: '20+ Sessions',
+      description: 'Comprehensive presentations covering the latest in Health care research and clinical practice'
     },
     {
       icon: FiUsers,
-      title: '25+ International Speakers',
+      title: '25+  Speakers',
       description: 'World-renowned experts sharing cutting-edge insights and breakthrough discoveries'
     },
     {
@@ -35,16 +35,16 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-            About the Conference
+            About the ARM
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-              The Global Cardio Summit 2025 brings together leading cardiovascular specialists, researchers, 
+              The Annual Review Meeting 2025 brings together leading Health care specialists, researchers, 
               and healthcare professionals from around the world to share cutting-edge research, innovative 
-              treatment approaches, and collaborative solutions for advancing cardiovascular health.
+              treatment approaches, and collaborative solutions for advancing health care service through Digitilization.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed">
-              Our mission focuses on pioneering gender-based cardiovascular care, exploring the role of 
+              Our mission focuses on pioneering gender-based Health care, exploring the role of 
               artificial intelligence in cardiology, and fostering international collaboration to tackle 
               the most pressing challenges in cardiac medicine today.
             </p>

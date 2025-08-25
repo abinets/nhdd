@@ -4,32 +4,32 @@ import { motion } from 'framer-motion';
 const Speakers = () => {
   const speakers = [
     {
-      name: 'Dr. Emily Chen',
-      title: 'Chief of Cardiology',
-      institution: 'Mayo Clinic',
+      name: 'H.E. Dr. Mekdes Daba',
+      title: 'Minister',
+      institution: 'Ministry of Health, Ethiopia',
       bio: 'Leading expert in interventional cardiology with over 20 years of experience in complex cardiac procedures.',
-      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+      image:  'https://www.moh.gov.et/sites/default/files/styles/mt_member_photo/public/2024-03/DR%20Mekdes%20Dabba.jpg?itok=oxAtJCmY'
     },
     {
-      name: 'Dr. Lucas Moreau',
-      title: 'Professor of Cardiology',
-      institution: 'Harvard Medical School',
+      name: 'H.E. Dr. Dereje Duguma',
+      title: 'State Minister',
+      institution: 'Ministry of Health, Ethiopia',
       bio: 'Pioneering researcher in cardiac regenerative medicine and stem cell therapy applications.',
-      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+      image:  'https://addisfortune.news/wp-content/uploads/2025/05/dereje-duguma.jpg'
     },
     {
-      name: 'Dr. Sophie Gagnon',
-      title: 'Director of Cardiac Research',
-      institution: 'McGill University',
-      bio: 'Specialist in gender-based cardiovascular care and women\'s heart health initiatives.',
-      image: 'https://images.unsplash.com/photo-1594824388853-d0c4a3b8b5b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+      name: ' H.E. Frehiwot Abebe',
+      title: 'State Minister',
+      institution: 'Ministry of Health, Ethiopia',
+      bio: 'Specialist in gender-based Health care and women\'s heart health initiatives.',
+      image:  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvEE6mzH-4ukgRCo-7KEXJE55MWJP6-O3EsA&s'
     },
     {
-      name: 'Dr. Ahmed Yusuf',
-      title: 'AI in Cardiology Lead',
-      institution: 'Imperial College London',
+      name: 'H.E. Sahrela Abdulahi',
+      title: 'State Minister',
+      institution: 'Ministry of Health, Ethiopia',
       bio: 'Innovator in artificial intelligence applications for cardiac diagnostics and predictive modeling.',
-      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+      image: 'https://www.thereporterethiopia.com/wp-content/uploads/2023/01/Navigating-the-min.jpg'
     }
   ];
 
@@ -47,7 +47,7 @@ const Speakers = () => {
             Featured Speakers
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Learn from world-renowned experts who are shaping the future of cardiovascular medicine
+            Learn from world-renowned experts who are shaping the future of Health care medicine
           </p>
         </motion.div>
 

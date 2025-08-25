@@ -8,7 +8,7 @@ import Speakers from './components/Speakers';
 import Schedule from './components/Schedule';
 import Venue from './components/Venue';
 import Sponsors from './components/Sponsors';
-import Pricing from './components/Pricing';
+import Resources from './components/Resources';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -25,7 +25,7 @@ function App() {
           <Schedule />
           <Venue />
           <Sponsors />
-          <Pricing />
+          <Resources />
           <Gallery />
           <Contact />
         </main>

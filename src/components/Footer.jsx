@@ -11,7 +11,7 @@ const Footer = () => {
     { name: 'Speakers', href: '#speakers' },
     { name: 'Schedule', href: '#schedule' },
     { name: 'Venue', href: '#venue' },
-    { name: 'Pricing', href: '#pricing' },
+    { name: 'Resources', href: '#Resources' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -47,26 +47,26 @@ const Footer = () => {
           >
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">GCS</span>
+                <span className="text-white font-bold text-lg">ARM</span>
               </div>
               <div>
-                <h1 className="font-bold text-xl">Global Cardio Summit</h1>
+                <h1 className="font-bold text-xl">27th Annual Review Meeting</h1>
                 <p className="text-blue-200 text-sm">2025</p>
               </div>
             </div>
             <p className="text-blue-200 mb-6 leading-relaxed">
-              Join us for three days of groundbreaking cardiovascular research, 
+              Join us for three days of groundbreaking Health care research, 
               innovative treatment approaches, and international collaboration in 
-              the heart of Montreal.
+              the heart of Jimma.
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-3">
                 <SafeIcon icon={FiMail} className="w-5 h-5 text-red-400" />
-                <span className="text-blue-200">info@globalcardiosummit.com</span>
+                <span className="text-blue-200">arm2025@moh.gov.et</span>
               </div>
               <div className="flex items-center space-x-3">
                 <SafeIcon icon={FiPhone} className="w-5 h-5 text-red-400" />
-                <span className="text-blue-200">+1 (514) 555-2025</span>
+                <span className="text-blue-200">+251 (914) 555-2025</span>
               </div>
             </div>
           </motion.div>
@@ -140,7 +140,7 @@ const Footer = () => {
 
         <div className="border-t border-blue-800 mt-12 pt-8 text-center">
           <p className="text-blue-200">
-            © 2025 Global Cardio Summit. All rights reserved.
+            © 2025 Annual Review Meeting. All rights reserved.
           </p>
         </div>
       </div>

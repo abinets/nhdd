@@ -20,7 +20,7 @@ const Venue = () => {
             Venue & Location
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Join us at Montreal's premier conference facility in the heart of the city
+            Join us at Jimma's Aba Jifar Meeting Hall  in the heart of the city
           </p>
         </motion.div>
 
@@ -34,10 +34,10 @@ const Venue = () => {
             <div className="bg-gradient-to-r from-blue-900 to-red-600 text-white rounded-xl p-8 mb-8">
               <div className="flex items-center space-x-3 mb-4">
                 <SafeIcon icon={FiMapPin} className="w-6 h-6" />
-                <h3 className="text-2xl font-bold">Palais des congrès de Montréal</h3>
+                <h3 className="text-2xl font-bold">Jimma</h3>
               </div>
               <p className="text-blue-100 mb-4">
-                1001 Place Jean-Paul-Riopelle, Montreal, QC H2Z 1H2, Canada
+                Jimma's Aba Jifar Meeting Hall, Jimma , Oromia
               </p>
             </div>
 
@@ -47,9 +47,7 @@ const Venue = () => {
                   World-Class Facilities
                 </h4>
                 <p className="text-gray-700 leading-relaxed">
-                  The Palais des congrès de Montréal is a state-of-the-art convention center 
-                  located in the heart of downtown Montreal. With its modern facilities and 
-                  cutting-edge technology, it provides the perfect environment for our 
+                  it provides the perfect environment for our 
                   international conference.
                 </p>
               </div>
@@ -81,8 +79,8 @@ const Venue = () => {
           >
             <div className="rounded-xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1549294413-26f195200c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Montreal Convention Center"
+                src="https://i.ytimg.com/vi/pgjORbFCwVo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBZV9RlBk5cYayEFs46e7R5H4nUHA"
+                alt="Jimma Traditional Coffee Center"
                 className="w-full h-96 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
@@ -90,8 +88,8 @@ const Venue = () => {
             
             <div className="mt-6">
               <img
-                src="https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Montreal Skyline"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj8mVXTdgp88BLMw941FczhNkj8Nl5Yh1UVcw4J8uLwTqFQgGboW7kwEyX7EyDlXsKBWg&usqp=CAU"
+                alt="Jimma coridors"
                 className="w-full h-48 object-cover rounded-lg shadow-lg"
               />
             </div>

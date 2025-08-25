@@ -23,7 +23,7 @@ const Header = () => {
     { name: 'Speakers', href: '#speakers' },
     { name: 'Schedule', href: '#schedule' },
     { name: 'Venue', href: '#venue' },
-    { name: 'Pricing', href: '#pricing' },
+    { name: 'Resources', href: '#Resources' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -84,11 +84,11 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
           >
             <div className="w-10 h-10 bg-gradient-to-r from-blue-900 to-red-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">GCS</span>
+              <span className="text-white font-bold text-lg">ARM</span>
             </div>
             <div>
               <h1 className={`font-bold text-xl ${isScrolled ? 'text-blue-900' : 'text-white'}`}>
-                Global Cardio Summit
+                27th Annual Review Meeting
               </h1>
               <p className={`text-sm ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>
                 2025
@@ -134,8 +134,8 @@ const Header = () => {
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 0.2, height: 'auto' }}
+            exit={{ opacity: 0.2, height: 0 }}
             className="absolute top-full left-0 right-0 bg-white rounded-lg shadow-lg p-4 mx-4"
           >
             {navItems.map((item) => (
