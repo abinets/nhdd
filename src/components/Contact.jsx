@@ -95,7 +95,7 @@ const Contact = () => {
 
             <div className="bg-gradient-to-r from-blue-900 to-red-600 text-white rounded-xl p-6">
               <h4 className="text-xl font-semibold mb-3">
-                Conference Information
+                ARM Information
               </h4>
               <p className="text-blue-100 mb-4">
                 For registration assistance, speaker inquiries, or general conference 

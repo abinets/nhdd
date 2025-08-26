@@ -42,7 +42,7 @@ const Schedule = () => {
         { time: '12:00 PM', title: 'Lunch & Awards Ceremony', speaker: '' },
         { time: '1:30 PM', title: 'Global Health Initiatives', speaker: 'Dr. Sophie Gagnon' },
         { time: '3:00 PM', title: 'Future Research Directions', speaker: 'Dr. Ahmed Yusuf' },
-        { time: '4:30 PM', title: 'Closing Remarks & Networking', speaker: 'Conference Committee' }
+        { time: '4:30 PM', title: 'Closing Remarks & Networking', speaker: 'ARM Committee' }
       ]
     }
   ];
@@ -58,7 +58,7 @@ const Schedule = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-            Conference Schedule
+            ARM Schedule
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
             Three days of intensive learning, networking, and collaboration

@@ -1,73 +1,34 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import SafeIcon from '../common/SafeIcon';
+import SafeIcon from '../common/SafeIcon'; // Assuming SafeIcon correctly renders FiIcons
 import * as FiIcons from 'react-icons/fi';
 
-const { FiCheck, FiUser, FiUsers } = FiIcons;
+const { FiDownload } = FiIcons; // Only need FiDownload now
 
 const Resources = () => {
+  // Updated ResourcesPlans with more items for a 4x5 grid layout
+  // Each item now includes a title and a downloadLink
   const ResourcesPlans = [
-    {
-      title: 'Annual Reports',
-      earlyBird: 99,
-      standard: 129,
-      icon: FiUser,
-      features: [
-        'Access to all sessions',
-        'ARM materials',
-        'Networking events',
-        'Certificate of attendance',
-        'Student ID required'
-      ],
-      popular: false
-    },
-    {
-      title: 'Fact Sheets',
-      earlyBird: 249,
-      standard: 299,
-      icon: FiUsers,
-      features: [
-        'Access to all sessions',
-        'ARM materials',
-        'Networking events',
-        'Certificate of attendance',
-        'Workshop access',
-        'Lunch included',
-        'Continuing education credits'
-      ],
-      popular: true
-    },    {
-      title: 'Guidlines',
-      earlyBird: 249,
-      standard: 299,
-      icon: FiUsers,
-      features: [
-        'Access to all sessions',
-        'ARM materials',
-        'Networking events',
-        'Certificate of attendance',
-        'Workshop access',
-        'Lunch included',
-        'Continuing education credits'
-      ],
-      popular: true
-    },
-        {
-      title: 'Other Resources',
-      earlyBird: 249,
-      standard: 299,
-      icon: FiUsers,
-      features: [
-        'Access to all sessions',
-        'ARM materials',
-        'Networking events',
-        'Certificate of attendance',
-        'Workshop access',
-        'Lunch included',
-        'Continuing education credits'
-      ],
-      popular: true
-    }
+    { title: 'Annual Report 2024', downloadLink: 'https://example.com/annual-report-2024.pdf' },
+    { title: 'Fact Sheet Q1 2025', downloadLink: 'https://example.com/fact-sheet-q1-2025.pdf' },
+    { title: 'Guideline Document A', downloadLink: 'https://example.com/guideline-a.pdf' },
+    { title: 'Policy Brief 001', downloadLink: 'https://example.com/policy-001.pdf' },
+    { title: 'Research Paper Vol 1', downloadLink: 'https://example.com/research-v1.pdf' },
+    { title: 'Annual Report 2023', downloadLink: 'https://example.com/annual-report-2023.pdf' },
+    { title: 'Fact Sheet Q4 2024', downloadLink: 'https://example.com/fact-sheet-q4-2024.pdf' },
+    { title: 'Guideline Document B', downloadLink: 'https://example.com/guideline-b.pdf' },
+    { title: 'Policy Brief 002', downloadLink: 'https://example.com/policy-002.pdf' },
+    { title: 'Research Paper Vol 2', downloadLink: 'https://example.com/research-v2.pdf' },
+    { title: 'Annual Report 2022', downloadLink: 'https://example.com/annual-report-2022.pdf' },
+    { title: 'Fact Sheet Q3 2024', downloadLink: 'https://example.com/fact-sheet-q3-2024.pdf' },
+    { title: 'Guideline Document C', downloadLink: 'https://example.com/guideline-c.pdf' },
+    { title: 'Policy Brief 003', downloadLink: 'https://example.com/policy-003.pdf' },
+    { title: 'Research Paper Vol 3', downloadLink: 'https://example.com/research-v3.pdf' },
+    { title: 'Annual Report 2021', downloadLink: 'https://example.com/annual-report-2021.pdf' },
+    { title: 'Fact Sheet Q2 2024', downloadLink: 'https://example.com/fact-sheet-q2-2024.pdf' },
+    { title: 'Guideline Document D', downloadLink: 'https://example.com/guideline-d.pdf' },
+    { title: 'Policy Brief 004', downloadLink: 'https://example.com/policy-004.pdf' },
+    { title: 'Research Paper Vol 4', downloadLink: 'https://example.com/research-v4.pdf' },
   ];
 
   return (
@@ -83,86 +44,58 @@ const Resources = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
             ARM Resources
           </h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
-            Choose the registration option that best fits your needs
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            Explore and download our valuable resources.
           </p>
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 max-w-md mx-auto">
-            <p className="text-red-700 font-semibold">
-              Registration ends September 15, 2025
-            </p>
-          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Grid adjusted to 4 columns on medium and larger screens */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {ResourcesPlans.map((plan, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }} // Slightly reduced delay for more items
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className={`relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${
-                plan.popular ? 'ring-2 ring-red-500' : ''
-              }`}
+              whileHover={{ y: -5 }} // Slightly reduced hover lift
+              className="relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 p-6 flex flex-col items-center text-center"
             >
-              {plan.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-red-500 text-white text-center py-2 text-sm font-semibold">
-                  Most Popular
-                </div>
-              )}
-              
-              <div className={`p-8 ${plan.popular ? 'pt-12' : ''}`}>
-                <div className="text-center mb-8">
-                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-900 to-red-600 rounded-full mb-4 mx-auto">
-                    <SafeIcon icon={plan.icon} className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-blue-900 mb-4">
-                    {plan.title}
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-center space-x-2">
-                      <span className="text-sm text-gray-500">PDF Files:</span>
-                      <span className="text-3xl font-bold text-green-600">
-                        {plan.earlyBird}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-center space-x-2">
-                      <span className="text-sm text-gray-500">Other Resources:</span>
-                      <span className="text-2xl font-bold text-gray-700">
-                        {plan.standard}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+              {/* Title of the resource */}
+              <h3 className="text-xl font-bold text-blue-900 mb-4 h-16 flex items-center justify-center">
+                {plan.title}
+              </h3>
 
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-3">
-                      <SafeIcon icon={FiCheck} className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              {/* QR Code */}
+              <div className="mb-6 flex-shrink-0">
+                <img 
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(plan.downloadLink)}`}
+                  alt={`QR Code for ${plan.title}`}
+                  className="rounded-lg shadow-md w-36 h-36"
+                  onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/150x150/cccccc/000000?text=QR+Error" }} // Fallback image for error
+                />
+                <p className="text-xs text-gray-500 mt-2">Scan to Download</p>
+              </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 relative overflow-hidden group ${
-                    plan.popular
-                      ? 'bg-red-600 text-white hover:bg-red-700'
-                      : 'bg-blue-900 text-white hover:bg-blue-800'
-                  }`}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-[#102542]"
+              {/* Download Button */}
+              <motion.a
+                href={plan.downloadLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 relative overflow-hidden group bg-red-600 text-white hover:bg-red-700 flex items-center justify-center space-x-2"
+              >
+                <FiDownload className="w-5 h-5 z-10" />
+                <span className="relative z-10">Download</span>
+                {/* Background hover effect */}
+                <motion.div
+                    className="absolute inset-0 bg-blue-900"
                     initial={{ x: '-100%' }}
                     whileHover={{ x: 0 }}
                     transition={{ duration: 0.3 }}
-                  />
-                  <span className="relative z-10">Register Now</span>
-                </motion.button>
-              </div>
+                />
+              </motion.a>
             </motion.div>
           ))}
         </div>

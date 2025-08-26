@@ -12,6 +12,7 @@ import Resources from './components/Resources';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import SiteVisits from './components/SiteVisits';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Schedule />
           <Venue />
           <Sponsors />
+          <SiteVisits/>
           <Resources />
           <Gallery />
           <Contact />

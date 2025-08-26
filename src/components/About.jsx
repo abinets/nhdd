@@ -19,8 +19,8 @@ const About = () => {
     },
     {
       icon: FiBookOpen,
-      title: 'Hands-on Workshops',
-      description: 'Interactive learning experiences with advanced cardiac imaging and intervention techniques'
+      title: '8+ Side Discussions',
+      description: 'Side discussion and learning experiences with advanced Health and intervention techniques'
     }
   ];
 
@@ -45,7 +45,7 @@ const About = () => {
             </p>
             <p className="text-lg text-gray-700 leading-relaxed">
               Our mission focuses on pioneering gender-based Health care, exploring the role of 
-              artificial intelligence in cardiology, and fostering international collaboration to tackle 
+              artificial intelligence in digital Health, and fostering international collaboration to tackle 
               the most pressing challenges in cardiac medicine today.
             </p>
           </div>

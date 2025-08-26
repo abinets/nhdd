@@ -7,28 +7,28 @@ const Speakers = () => {
       name: 'H.E. Dr. Mekdes Daba',
       title: 'Minister',
       institution: 'Ministry of Health, Ethiopia',
-      bio: 'Leading expert in interventional cardiology with over 20 years of experience in complex cardiac procedures.',
+      bio: 'A respected public health professional, she has dedicated her career to improving the health and well-being of the Ethiopian population. Her leadership focuses on strengthening the country\'s healthcare system and addressing key public health challenges',
       image:  'https://www.moh.gov.et/sites/default/files/styles/mt_member_photo/public/2024-03/DR%20Mekdes%20Dabba.jpg?itok=oxAtJCmY'
     },
     {
       name: 'H.E. Dr. Dereje Duguma',
       title: 'State Minister',
       institution: 'Ministry of Health, Ethiopia',
-      bio: 'Pioneering researcher in cardiac regenerative medicine and stem cell therapy applications.',
+      bio:  ' H.E. Dr. Dereje Duguma is instrumental in the implementation of national health policies and the oversight of key public health programs. His work focuses on advancing healthcare access and improving health outcomes for all Ethiopians.',
       image:  'https://addisfortune.news/wp-content/uploads/2025/05/dereje-duguma.jpg'
     },
     {
       name: ' H.E. Frehiwot Abebe',
       title: 'State Minister',
       institution: 'Ministry of Health, Ethiopia',
-      bio: 'Specialist in gender-based Health care and women\'s heart health initiatives.',
+      bio: 'H.E. Frehiwot Abebe is the State Minister of Health, leading the Resource, Administration, and Regulatory Wing. She oversees key areas such as the pharmaceutical supply chain, professional regulation, and the Ethiopian Health Insurance Service, where she was previously the Director General.',
       image:  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvEE6mzH-4ukgRCo-7KEXJE55MWJP6-O3EsA&s'
     },
     {
       name: 'H.E. Sahrela Abdulahi',
       title: 'State Minister',
       institution: 'Ministry of Health, Ethiopia',
-      bio: 'Innovator in artificial intelligence applications for cardiac diagnostics and predictive modeling.',
+      bio: 'H.E. Sahrela Abdulahi is a former State Minister of Health for Ethiopia. During her tenure, she played a key role in public health initiatives and health system capacity building. She has since transitioned to a new role, continuing her public service career.',
       image: 'https://www.thereporterethiopia.com/wp-content/uploads/2023/01/Navigating-the-min.jpg'
     }
   ];
@@ -74,7 +74,7 @@ const Speakers = () => {
                 <h3 className="text-xl font-bold text-blue-900 mb-2">
                   {speaker.name}
                 </h3>
-                <p className="text-red-600 font-semibold mb-1">
+                <p className="text-blue-600 font-semibold mb-1">
                   {speaker.title}
                 </p>
                 <p className="text-gray-600 text-sm mb-3">

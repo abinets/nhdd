@@ -122,7 +122,7 @@ const Hero = () => {
                 ease: "easeInOut"
               }}
             >
-              2025
+              ARM - 2025
             </motion.span>
           </div>
           
@@ -143,11 +143,11 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 1.0 }}
           >
             <div className="flex items-center space-x-2">
-              <SafeIcon icon={FiCalendar} className="w-6 h-6 text-red-500" />
+              <SafeIcon icon={FiCalendar} className="w-6 h-6 text-blue-500" />
               <span className="text-lg">October 16–18, 2025</span>
             </div>
             <div className="flex items-center space-x-2">
-              <SafeIcon icon={FiMapPin} className="w-6 h-6 text-red-500" />
+              <SafeIcon icon={FiMapPin} className="w-6 h-6 text-blue-500" />
               <span className="text-lg">Jimma, Oromia Region</span>
             </div>
           </motion.div>
@@ -170,7 +170,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="text-3xl font-bold text-red-500">{item.value}</div>
+                <div className="text-3xl font-bold text-blue-500">{item.value}</div>
                 <div className="text-sm text-blue-100">{item.label}</div>
               </motion.div>
             ))}
@@ -184,7 +184,7 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative overflow-hidden bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 group"
+              className="relative overflow-hidden bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 group"
             >
               <motion.div
                 className="absolute inset-0 bg-[#102542]"

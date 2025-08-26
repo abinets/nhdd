@@ -24,6 +24,7 @@ const Header = () => {
     { name: 'Schedule', href: '#schedule' },
     { name: 'Venue', href: '#venue' },
     { name: 'Resources', href: '#Resources' },
+    { name: 'Site Visits', href: '#SiteVisits' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -83,7 +84,7 @@ const Header = () => {
             className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-900 to-red-600 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-900 to-blue-600 rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-lg">ARM</span>
             </div>
             <div>
@@ -101,7 +102,7 @@ const Header = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className={`transition-colors hover:text-red-600 ${
+                className={`transition-colors hover:text-blue-600 ${
                   isScrolled ? 'text-gray-700' : 'text-white'
                 }`}
               >
@@ -111,10 +112,10 @@ const Header = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative overflow-hidden bg-red-600 text-white px-6 py-2 rounded-full transition-all duration-300 group"
+              className="relative overflow-hidden bg-blue-600 text-white px-6 py-2 rounded-full transition-all duration-300 group"
             >
               <motion.div
-                className="absolute inset-0 bg-[#102542]"
+                className="absolute inset-0 bg-[#52542]"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
@@ -142,12 +143,12 @@ const Header = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left py-2 text-gray-700 hover:text-red-600 transition-colors"
+                className="block w-full text-left py-2 text-gray-700 hover:text-blue-600 transition-colors"
               >
                 {item.name}
               </button>
             ))}
-            <button className="w-full bg-red-600 text-white py-2 rounded-full mt-4 hover:bg-red-700 transition-colors relative overflow-hidden group">
+            <button className="w-full bg-blue-600 text-white py-2 rounded-full mt-4 hover:bg-blue-700 transition-colors relative overflow-hidden group">
               <motion.div
                 className="absolute inset-0 bg-[#102542]"
                 initial={{ x: '-100%' }}
