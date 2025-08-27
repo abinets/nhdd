@@ -75,28 +75,54 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-yellow-200/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
       style={{ height: '80px' }}
     >
       <div className="container mx-auto px-4 h-full flex items-center">
         <div className="flex items-center justify-between w-full">
-          <motion.div 
-            className="flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-900 to-blue-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">27th ARM</span>
-            </div>
-            <div>
-              <h1 className={`font-bold text-xl ${isScrolled ? 'text-blue-900' : 'text-white'}`}>
-               Ministry of Health, Ethiopia
-              </h1>
-              <p className={`text-sm ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>
-                2025
-              </p>
-            </div>
-          </motion.div>
+          {/* Mobile menu button is now on the left */}
+          <div className="flex items-center space-x-2"> {/* New flex container for the menu and text */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`md:hidden ${isScrolled ? 'text-gray-700' : 'text-white'}`}
+            >
+              <SafeIcon icon={isMobileMenuOpen ? FiX : FiMenu} className="w-6 h-6" />
+            </button>
+            
+            <motion.div 
+              className="flex items-center space-x-1"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img 
+                  src="https://hispmd.moh.gov.et/app/MOH_logo_text_white.png" 
+                  alt="Ministry of Health Ethiopia Logo" 
+                  className="rounded-full w-10 h-10"
+                />
+              </div>
+              {/* Conditional rendering for mobile and desktop views */}
+              <div className="hidden md:block">
+                <h1 className={`font-bold text-xl ${isScrolled ? 'text-blue-900' : 'text-white'}`}>
+                ARM | 2025
+                </h1>
+                <p className={`text-sm ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>
+                  Ministry of Health, Ethiopia
+                </p>
+              </div>
+              {/* Mobile-specific layout: breaks the title into two lines and reduces font size */}
+              <div className="block md:hidden">
+                <div className="flex flex-col ml-1">
+                  <h1 className={`font-bold text-sm leading-tight ${isScrolled ? 'text-blue-900' : 'text-white'}`}>
+                    ARM | 2025
+                  </h1>
+                  <p className={`text-xs leading-tight ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>
+                   Ministry of Health, Ethiopia 
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
@@ -124,13 +150,6 @@ const Header = () => {
               <span className="relative z-10">Register</span>
             </motion.button>
           </nav>
-
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden ${isScrolled ? 'text-gray-700' : 'text-white'}`}
-          >
-            <SafeIcon icon={isMobileMenuOpen ? FiX : FiMenu} className="w-6 h-6" />
-          </button>
         </div>
 
         {isMobileMenuOpen && (
