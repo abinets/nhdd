@@ -142,11 +142,11 @@ const SemiCircleGauge = ({ timeLeft }) => {
       <div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center p-2 rounded-lg"
       >
-        <div className="text-6xl font-bold text-white text-center">
+        <div className="text-4xl font-bold text-white text-center">
           {daysRemaining}
         </div>
         <div className="text-sm text-blue-100 uppercase -mt-1">days</div>
-        <div className="text-5xl font-bold text-white text-center mt-1">
+        <div className="text-4xl font-bold text-white text-center mt-1">
           {timeLeft.hours}
         </div>
         <div className="text-sm text-blue-100 uppercase -mt-1">hrs</div>
@@ -214,7 +214,7 @@ const Hero = () => {
         >
           <div className="mb-6">
             <motion.h1 
-              className="text-5xl md:text-7xl font-bold leading-tight mb-2" // Reduced margin to bring closer
+              className="text-5xl md:text-7xl font-bold leading-tight mb-2 whitespace-nowrap md:whitespace-normal"
               initial="hidden"
               animate="visible"
               variants={containerVariants}
@@ -231,7 +231,7 @@ const Hero = () => {
             </motion.h1>
 
             <motion.h1 
-              className="text-3xl md:text-5xl font-bold leading-tight mb-4" // Smaller size for translation
+              className="text-3xl md:text-5xl font-bold leading-tight mb-4 whitespace-nowrap md:whitespace-normal"
               initial="hidden"
               animate="visible"
               variants={containerVariantsAmharic}
