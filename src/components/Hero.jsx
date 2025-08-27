@@ -7,9 +7,11 @@ const { FiCalendar, FiMapPin, FiClock } = FiIcons;
 
 // Break the text into an array of characters
 const text = "Annual Review Meeting";
+const text_am = "የጤናው ዘርፍ ዓመታዊ ጉባዔ";
 const characters = Array.from(text);
+const characters_am = Array.from(text_am);
 
-// Define variants for the parent container (h1) to stagger child animations
+// Define variants for the English parent container
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -20,15 +22,41 @@ const containerVariants = {
   },
 };
 
-// Define variants for each individual character (span)
+// Define variants for the Amharic parent container to wave in the opposite direction
+const containerVariantsAmharic = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: -0.05, // Negative stagger to wave from right to left
+    },
+  },
+};
+
+// Define variants for each individual English character
 const characterVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
-    y: 0,
-    // New: Animate the color to a light blue and add a wavering scale effect
+    y: [0, -10, 0], // Wave effect with movement on the y-axis
     color: ['#FFFFFF', '#40E0D0'], // Animate to a light cyan color
-    scale: [1, 1.1, 1], // Increased the bounce effect to 1.1
+    scale: [1, 1.1, 1], // Increased the bounce effect
+    transition: {
+      repeat: Infinity,
+      repeatType: "mirror",
+      duration: 1.5,
+    },
+  },
+};
+
+// Define variants for each individual Amharic character (opposite y-axis movement)
+const characterVariantsAmharic = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { 
+    opacity: 1, 
+    y: [0, 10, 0], // Wave effect with opposite y-axis movement
+    color: ['#FFFFFF', '#40E0D0'],
+    scale: [1, 1.1, 1],
     transition: {
       repeat: Infinity,
       repeatType: "mirror",
@@ -89,7 +117,7 @@ const Hero = () => {
         >
           <div className="mb-6">
             <motion.h1 
-              className="text-5xl md:text-7xl font-bold leading-tight mb-4"
+              className="text-5xl md:text-7xl font-bold leading-tight mb-2" // Reduced margin to bring closer
               initial="hidden"
               animate="visible"
               variants={containerVariants}
@@ -98,6 +126,23 @@ const Hero = () => {
                 <motion.span
                   key={index}
                   variants={characterVariants}
+                  style={{ display: 'inline-block' }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+            </motion.h1>
+
+            <motion.h1 
+              className="text-3xl md:text-5xl font-bold leading-tight mb-4" // Smaller size for translation
+              initial="hidden"
+              animate="visible"
+              variants={containerVariantsAmharic}
+            >
+              {characters_am.map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={characterVariantsAmharic}
                   style={{ display: 'inline-block' }}
                 >
                   {char === ' ' ? '\u00A0' : char}
