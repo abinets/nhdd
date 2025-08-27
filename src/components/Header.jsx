@@ -86,11 +86,11 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
           >
             <div className="w-10 h-10 bg-gradient-to-r from-blue-900 to-blue-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">ARM</span>
+              <span className="text-white font-bold text-lg">27th ARM</span>
             </div>
             <div>
               <h1 className={`font-bold text-xl ${isScrolled ? 'text-blue-900' : 'text-white'}`}>
-                27th Annual Review Meeting
+               Ministry of Health, Ethiopia
               </h1>
               <p className={`text-sm ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>
                 2025
@@ -121,7 +121,7 @@ const Header = () => {
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
               />
-              <span className="relative z-10">Register Now</span>
+              <span className="relative z-10">Register</span>
             </motion.button>
           </nav>
 
@@ -156,7 +156,7 @@ const Header = () => {
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
               />
-              <span className="relative z-10">Register Now</span>
+              <span className="relative z-10">Register</span>
             </button>
           </motion.div>
         )}
