@@ -75,7 +75,7 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-yellow-200/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
       style={{ height: '80px' }}
     >
@@ -104,20 +104,20 @@ const Header = () => {
               {/* Conditional rendering for mobile and desktop views */}
               <div className="hidden md:block">
                 <h1 className={`font-bold text-xl ${isScrolled ? 'text-blue-900' : 'text-white'}`}>
-                ARM | 2025
+                 Ministry of Health, Ethiopia
                 </h1>
                 <p className={`text-sm ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>
-                  Ministry of Health, Ethiopia
+                  2025
                 </p>
               </div>
               {/* Mobile-specific layout: breaks the title into two lines and reduces font size */}
               <div className="block md:hidden">
                 <div className="flex flex-col ml-1">
                   <h1 className={`font-bold text-sm leading-tight ${isScrolled ? 'text-blue-900' : 'text-white'}`}>
-                    ARM | 2025
+                    Ministry of Health,
                   </h1>
                   <p className={`text-xs leading-tight ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>
-                   Ministry of Health, Ethiopia 
+                    Ethiopia | 2025
                   </p>
                 </div>
               </div>
@@ -157,7 +157,7 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 1, height: 0 }}
-            className="absolute top-full left-0 right-0 bg-white rounded-lg shadow-lg p-4 mx-4"
+            className="absolute top-full left-0 right-0 w-[70%] bg-white rounded-lg shadow-lg p-4 mx-auto"
           >
             {navItems.map((item) => (
               <button
