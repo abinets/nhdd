@@ -24,7 +24,8 @@ const Header = () => {
     { name: 'Schedule', href: '#schedule' },
     { name: 'Venue', href: '#venue' },
     { name: 'Resources', href: '#Resources' },
-    { name: 'Site Visits', href: '#SiteVisits' },
+    { name: 'Awardees', href: '#awardees' },
+    { name: 'Visits', href: '#SiteVisits' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -135,8 +136,8 @@ const Header = () => {
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 0.2, height: 'auto' }}
-            exit={{ opacity: 0.2, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 1, height: 0 }}
             className="absolute top-full left-0 right-0 bg-white rounded-lg shadow-lg p-4 mx-4"
           >
             {navItems.map((item) => (

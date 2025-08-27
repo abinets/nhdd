@@ -13,6 +13,7 @@ import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SiteVisits from './components/SiteVisits';
+import Awardees from './components/Awardees';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Schedule />
           <Venue />
           <Sponsors />
+          <Awardees />
           <SiteVisits/>
           <Resources />
           <Gallery />

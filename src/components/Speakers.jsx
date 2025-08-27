@@ -8,7 +8,7 @@ const Speakers = () => {
       title: 'Minister',
       institution: 'Ministry of Health, Ethiopia',
       bio: 'A respected public health professional, she has dedicated her career to improving the health and well-being of the Ethiopian population. Her leadership focuses on strengthening the country\'s healthcare system and addressing key public health challenges',
-      image:  'https://www.moh.gov.et/sites/default/files/styles/mt_member_photo/public/2024-03/DR%20Mekdes%20Dabba.jpg?itok=oxAtJCmY'
+      image:  'https://pbs.twimg.com/profile_images/1779106528462602240/x2W92hyE_400x400.jpg'
     },
     {
       name: 'H.E. Dr. Dereje Duguma',

@@ -8,31 +8,17 @@ const { FiMapPin, FiInfo, FiImage, FiClock, FiCheckCircle } = FiIcons;
 
 const SiteVisits = () => {
   const siteLocations = [
-    {
-      title: 'Jimma University Main Campus',
-      description: 'The main campus of Jimma University, a leading institution in Ethiopia, known for its green environment and academic excellence. Attendees will explore key facilities relevant to digital health innovation and research.',
-      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.7634628286047!2d36.83734491477065!3d7.683693294406201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b075e7a3721389%3A0x8f2d5743b2e5a4e0!2sJimma%20University%20University%20Main%20Campus!5e0!3m2!1sen!2set!4v1678912345678!5m2!1sen!2set',
-      images: [
-        'https://placehold.co/400x250/BADA55/FFFFFF?text=JU+Campus+1',
-        'https://placehold.co/400x250/808000/FFFFFF?text=JU+Campus+2',
-        'https://placehold.co/400x250/FF7F50/FFFFFF?text=JU+Campus+3',
-      ],
-      // Standardized visitInfo for ARM
-      visitInfo: [
-        'Date: October 15, 2025',
-        'Total Participants: 120',
-        'Distance from Jimma City: 3 km',
-        'Focus: Digital health research, academic collaborations'
-      ],
-    },
+   
     {
       title: 'Abajifar Palace Museum',
       description: 'Step back in time at the historic Abajifar Palace, once the residence of King Abajifar. This site offers cultural insights and a glimpse into the regional history, providing a unique backdrop for ARM discussions.',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.805566373801!2d36.82729111477063!3d7.678783694409396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b0758410940199%3A0x6a05e55b4b1a4a5!2sAbajifar%20Palace%20Museum!5e0!3m2!1sen!2set!4v1678912345679!5m2!1sen!2set',
       images: [
-        'https://placehold.co/400x250/E0BBE4/FFFFFF?text=Palace+Ext',
-        'https://placehold.co/400x250/957DAD/FFFFFF?text=Palace+Int',
-        'https://placehold.co/400x250/D291BC/FFFFFF?text=Palace+Art',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRztCJeUcCPZScUHZ9C2rqiJ5pqER6PYJ6ikeAPuOMCnF4bp0koIzxdv6g983rc22ray-U&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEyV-vNJ31hyiLZyMEAo5yOnjYpY6dCbc5UwZoae1I_RgCIPKstzn5SAg2pWlZpAc0LP4&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSugsiyhkPQHly8-2USeAgb88kZuYqr7ZSuihs_i0WD0SLz1UWgiqR1EnMv_AfXmIagtY&usqp=CAU',
+        'https://upload.wikimedia.org/wikipedia/commons/0/04/Abbajifar_palace_from_Jimma-september_2022.jpg',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtVfkEmLuRk4xdG73gPbhmWtaUnaOiBoT85nfxbxeabWu-5rkmApMhV_AnmRDSz5QexZc&usqp=CAU',
       ],
       // Standardized visitInfo for ARM
       visitInfo: [
@@ -47,9 +33,10 @@ const SiteVisits = () => {
       description: 'A serene lake perfect for relaxation and recreation. Recent restoration efforts have made it a vibrant spot, offering a refreshing break and informal networking opportunity for ARM participants.',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.67056024467!2d36.816654014770685!3d7.694697994399763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b074a3502b4d21%3A0x7d2836696b9d6e8e!2sLake%20Boye!5e0!3m2!1sen!2set!4v1678912345680!5m2=1sen!2set',
       images: [
-        'https://placehold.co/400x250/FFDDC1/000000?text=Lake+View+1',
-        'https://placehold.co/400x250/FFDAB9/000000?text=Boating',
-        'https://placehold.co/400x250/FFC0CB/000000?text=Sunset',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ962uk1yhdWfBxltrsQELMUNHRH5vS3HeZMiGMh2NCQHUYkoL1-Eh7Vuh5uaktWnbcvRo&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRawgNJKcxlkismfNGtK3g0Yz0hRRyL2HqFDDFz7wOUqAObZazaVeLu3RI_JuVArUmGE84&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsZZYUVVo-P0wuRd1_ndgjTmtyl_8mkw4bnhxa1QYAnV_XSEqbZTbzDkK6h3YTC3oLXII&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAb0saEw0wcJMEa1ET4fR2ZxstU5PLzq92XIovXlXzokmMc1xDHt8SUczCc7ZkpV1CZwM&usqp=CAU',
       ],
       // Standardized visitInfo for ARM
       visitInfo: [
@@ -93,23 +80,7 @@ const SiteVisits = () => {
         'Focus: Governance structure, urban development relevant to ARM themes'
       ],
     },
-    {
-      title: 'Jimma Public Library',
-      description: 'A community hub for learning and knowledge. The public library offers resources and a quiet space, highlighting local efforts in education and information access for ARM attendees.',
-      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.839974855268!2d36.82825121477061!3d7.674812994411986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b07584107101d2%3A0x7d2836696b9d6e91!2sJimma%20Public%20Library!5e0!3m2!1sen!2set!4v1678912345683!5m2!1sen!2set',
-      images: [
-        'https://placehold.co/400x250/DAF7A6/000000?text=Library+Ext',
-        'https://placehold.co/400x250/C1E7B8/000000?text=Reading+Area',
-        'https://placehold.co/400x250/9BCD9B/000000?text=Books',
-      ],
-      // Standardized visitInfo for ARM
-      visitInfo: [
-        'Date: October 15, 2025',
-        'Total Participants: 50',
-        'Distance from Jimma City: 1.5 km',
-        'Focus: Educational initiatives, public resource accessibility for ARM visitors'
-      ],
-    },
+ 
   ];
 
   const [activeImage, setActiveImage] = useState({}); // State to track active image for each site
