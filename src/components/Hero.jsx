@@ -389,6 +389,8 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
+            // Added mb-8 for mobile to create a gap at the bottom
+            className="mb-8 md:mb-0"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
