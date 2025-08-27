@@ -5,11 +5,20 @@ import * as FiIcons from 'react-icons/fi';
 
 const { FiCalendar, FiMapPin, FiClock } = FiIcons;
 
-// Break the text into an array of characters
-const text = "Annual Review Meeting";
-const text_am = "የጤናው ዘርፍ ዓመታዊ ጉባዔ";
-const characters = Array.from(text);
-const characters_am = Array.from(text_am);
+// Break the text into arrays of characters for two-line display on mobile
+const textLine1 = "Annual Review";
+const textLine2 = "Meeting";
+const characters1 = Array.from(textLine1);
+const characters2 = Array.from(textLine2);
+
+const text_am_line1 = "የጤናው ዘርፍ";
+const text_am_line2 = "ዓመታዊ ጉባዔ";
+const characters_am1 = Array.from(text_am_line1);
+const characters_am2 = Array.from(text_am_line2);
+
+// Single line characters for larger screens
+const charactersFull = Array.from("Annual Review Meeting");
+const characters_amFull = Array.from("የጤናው ዘርፍ ዓመታዊ ጉባዔ");
 
 // Define variants for the English parent container
 const containerVariants = {
@@ -213,39 +222,111 @@ const Hero = () => {
           className="max-w-4xl mx-auto"
         >
           <div className="mb-6">
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold leading-tight mb-2 whitespace-nowrap md:whitespace-normal"
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-            >
-              {characters.map((char, index) => (
-                <motion.span
-                  key={index}
-                  variants={characterVariants}
-                  style={{ display: 'inline-block' }}
+            {/* Mobile View: two-line title */}
+            <div className="md:hidden">
+                <motion.h1 
+                  className="text-5xl font-bold leading-tight mb-0 whitespace-nowrap"
+                  initial="hidden"
+                  animate="visible"
+                  variants={containerVariants}
                 >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
-              ))}
-            </motion.h1>
+                  {characters1.map((char, index) => (
+                    <motion.span
+                      key={`line1-${index}`}
+                      variants={characterVariants}
+                      style={{ display: 'inline-block' }}
+                    >
+                      {char === ' ' ? '\u00A0' : char}
+                    </motion.span>
+                  ))}
+                </motion.h1>
+                <motion.h1 
+                  className="text-5xl font-bold leading-tight mb-2 whitespace-nowrap"
+                  initial="hidden"
+                  animate="visible"
+                  variants={containerVariants}
+                >
+                  {characters2.map((char, index) => (
+                    <motion.span
+                      key={`line2-${index}`}
+                      variants={characterVariants}
+                      style={{ display: 'inline-block' }}
+                    >
+                      {char === ' ' ? '\u00A0' : char}
+                    </motion.span>
+                  ))}
+                </motion.h1>
 
-            <motion.h1 
-              className="text-3xl md:text-5xl font-bold leading-tight mb-4 whitespace-nowrap md:whitespace-normal"
-              initial="hidden"
-              animate="visible"
-              variants={containerVariantsAmharic}
-            >
-              {characters_am.map((char, index) => (
-                <motion.span
-                  key={index}
-                  variants={characterVariantsAmharic}
-                  style={{ display: 'inline-block' }}
+                <motion.h1 
+                  className="text-3xl font-bold leading-tight mb-0 whitespace-nowrap"
+                  initial="hidden"
+                  animate="visible"
+                  variants={containerVariantsAmharic}
                 >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
-              ))}
-            </motion.h1>
+                  {characters_am1.map((char, index) => (
+                    <motion.span
+                      key={`amharic-line1-${index}`}
+                      variants={characterVariantsAmharic}
+                      style={{ display: 'inline-block' }}
+                    >
+                      {char === ' ' ? '\u00A0' : char}
+                    </motion.span>
+                  ))}
+                </motion.h1>
+                <motion.h1 
+                  className="text-3xl font-bold leading-tight mb-4 whitespace-nowrap"
+                  initial="hidden"
+                  animate="visible"
+                  variants={containerVariantsAmharic}
+                >
+                  {characters_am2.map((char, index) => (
+                    <motion.span
+                      key={`amharic-line2-${index}`}
+                      variants={characterVariantsAmharic}
+                      style={{ display: 'inline-block' }}
+                    >
+                      {char === ' ' ? '\u00A0' : char}
+                    </motion.span>
+                  ))}
+                </motion.h1>
+            </div>
+            
+            {/* Desktop View: single-line title */}
+            <div className="hidden md:block">
+              <motion.h1 
+                className="text-7xl font-bold leading-tight mb-2 whitespace-normal"
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+              >
+                {charactersFull.map((char, index) => (
+                  <motion.span
+                    key={`full-line1-${index}`}
+                    variants={characterVariants}
+                    style={{ display: 'inline-block' }}
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </motion.span>
+                ))}
+              </motion.h1>
+
+              <motion.h1 
+                className="text-5xl font-bold leading-tight mb-4 whitespace-normal"
+                initial="hidden"
+                animate="visible"
+                variants={containerVariantsAmharic}
+              >
+                {characters_amFull.map((char, index) => (
+                  <motion.span
+                    key={`full-amharic-line2-${index}`}
+                    variants={characterVariantsAmharic}
+                    style={{ display: 'inline-block' }}
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </motion.span>
+                ))}
+              </motion.h1>
+            </div>
             
             <motion.span 
               // Changed size, color, and reduced duration
