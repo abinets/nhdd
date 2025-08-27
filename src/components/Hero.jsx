@@ -65,6 +65,103 @@ const characterVariantsAmharic = {
   },
 };
 
+// Semi-circle Gauge component to display time with a single pin and gradient
+const SemiCircleGauge = ({ timeLeft }) => {
+  const radius = 150;
+  // Increased stroke width for a wider gauge line
+  const strokeWidth = 30; 
+  const viewBoxSize = radius * 2 + strokeWidth;
+  const center = viewBoxSize / 2;
+
+  // Maximum value for the gauge (assuming a max of 365 days for the full semi-circle)
+  const maxDays = 365;
+  // Use a fixed value for demonstration as requested
+  const daysRemaining = 49;
+
+  // Define colors for the gradient
+  const gradientColors = [
+    { color: '#FF4136', offset: 0 }, // Red
+    { color: '#FF851B', offset: 0.3 }, // Orange
+    { color: '#FFDC00', offset: 0.5 }, // Yellow
+    { color: '#2ECC40', offset: 0.7 }, // Green
+    { color: '#0074D9', offset: 1 }, // Blue
+  ];
+  
+  // Correctly calculate the rotation angle based on days remaining.
+  // The gauge goes from left (365 days) to right (0 days).
+  const angle = 180 * (daysRemaining / maxDays);
+  
+  return (
+    <div className="flex flex-col items-center relative">
+      <svg
+        width={viewBoxSize}
+        height={viewBoxSize / 2 + 30}
+        viewBox={`0 0 ${viewBoxSize} ${viewBoxSize / 2 + 30}`}
+      >
+        <defs>
+          <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            {gradientColors.map((stop, index) => (
+              <stop key={index} offset={stop.offset} stopColor={stop.color} />
+            ))}
+          </linearGradient>
+        </defs>
+
+        {/* Semi-circle track with gradient segments */}
+        <path
+          d={`M ${center - radius} ${center} A ${radius} ${radius} 0 0 1 ${center + radius} ${center}`}
+          fill="transparent"
+          stroke="url(#gaugeGradient)"
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+        />
+
+        {/* Correctly designed pointer and pivot circle group, rotated based on daysRemaining */}
+        <g transform={`rotate(${-angle}, ${center}, ${center})`}>
+          {/* Pointer shape - a solid triangle path */}
+          <path
+            d={`M ${center} ${center - 10} L ${center + radius - 10} ${center} L ${center} ${center + 10} Z`}
+            fill="#fff"
+            className="shadow-lg"
+          />
+        </g>
+        
+        {/* Center pivot point circle */}
+        <motion.circle
+          cx={center}
+          cy={center}
+          r="10"
+          fill="#fff"
+          className="shadow-lg"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 10, delay: 0.5 }}
+        />
+        
+      </svg>
+      {/* Time remaining text display, now centered and with uppercase "REMAINED" */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center p-2 rounded-lg"
+      >
+        <div className="text-6xl font-bold text-white text-center">
+          {daysRemaining}
+        </div>
+        <div className="text-sm text-blue-100 uppercase -mt-1">days</div>
+        <div className="text-5xl font-bold text-white text-center mt-1">
+          {timeLeft.hours}
+        </div>
+        <div className="text-sm text-blue-100 uppercase -mt-1">hrs</div>
+        <div className="text-md text-blue-100 uppercase mt-2">REMAINED</div>
+      </div>
+      {/* Text labels for start and end, now with adjusted position */}
+      <div className="flex justify-between w-full max-w-sm" style={{ marginTop: '-20px' }}>
+          <span className="text-white text-xl font-bold">365</span>
+          <span className="text-white text-xl font-bold">0</span>
+      </div>
+    </div>
+  );
+};
+
+
 const Hero = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -197,30 +294,16 @@ const Hero = () => {
             </div>
           </motion.div>
           
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-2xl mx-auto"
+          {/* New gauge timer section */}
+          <motion.div
+            className="flex justify-center items-center flex-col gap-8 mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            {[
-              { label: 'Days', value: timeLeft.days },
-              { label: 'Hours', value: timeLeft.hours },
-              { label: 'Minutes', value: timeLeft.minutes },
-              { label: 'Seconds', value: timeLeft.seconds }
-            ].map((item, index) => (
-              <motion.div 
-                key={item.label} 
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="text-3xl font-bold text-blue-500">{item.value}</div>
-                <div className="text-sm text-blue-100">{item.label}</div>
-              </motion.div>
-            ))}
+            <SemiCircleGauge timeLeft={timeLeft} />
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
