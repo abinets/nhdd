@@ -357,7 +357,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            Advancing Health Care Service Through Digitilization
+            Driving Health Gains Through Sustainable Investments and Innovations
           </motion.p>
 
           <motion.div
