@@ -85,7 +85,7 @@ const SemiCircleGauge = ({ timeLeft }) => {
   // Maximum value for the gauge (assuming a max of 365 days for the full semi-circle)
   const maxDays = 365;
   // Use a fixed value for demonstration as requested
-  const daysRemaining = 49;
+  const daysRemaining = 39;
 
   // Define colors for the gradient
   const gradientColors = [
