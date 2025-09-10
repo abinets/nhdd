@@ -366,7 +366,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-                     ዘላቂ ኢንቨስትመንትና ፈጠራ፣ ለጤናው ዘርፍ እመርታ
+                     ዘላቂ ኢንቨስትመንትና ፈጠራ፣ ለጤናው ዘርፍ እመርታ!
 
           </motion.p>
           <motion.div
@@ -377,7 +377,8 @@ const Hero = () => {
           >
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiCalendar} className="w-6 h-6 text-blue-500" />
-              <span className="text-lg">October 16–18, 2025</span>
+              <span className="text-lg">October 22–24, 2025</span>
+               <span className="text-lg">ጥቅምት 12–14, 2018</span>
             </div>
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiMapPin} className="w-6 h-6 text-blue-500" />

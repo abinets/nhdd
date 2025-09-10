@@ -1,42 +1,69 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import SafeIcon from '../common/SafeIcon';
-import * as FiIcons from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const { FiChevronLeft, FiChevronRight, FiPlay } = FiIcons;
+// Self-contained Icon component using SVG for a single-file solution
+const Icon = ({ d, className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d={d} />
+  </svg>
+);
 
 const Gallery = () => {
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentMedia, setCurrentMedia] = useState(0);
 
-  const images = [
+  const mediaItems = [
     {
-      src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      alt: 'ARM presentation'
+      type: 'video',
+      src: 'https://www.youtube.com/embed/5yKMelDOl1A',
+      alt: 'ARM YouTube Highlights',
+      thumbnail: 'https://placehold.co/800x600/102542/ffffff?text=ARM+Highlights'
     },
     {
+      type: 'video',
+      src: 'https://www.youtube.com/embed/-6yBbtYlcQ8',
+      alt: 'ARM YouTube Highlights',
+      thumbnail: 'https://placehold.co/800x600/102542/ffffff?text=ARM+Highlights'
+    },
+    {
+      type: 'video',
+      src: 'https://www.youtube.com/embed/RSSuRj6a6zw',
+      alt: 'ARM YouTube Highlights',
+      thumbnail: 'https://placehold.co/800x600/102542/ffffff?text=ARM+Highlights'
+    },
+    {
+      type: 'video',
+      src: 'https://www.facebook.com/video/embed?video_id=447721674600215',
+      alt: 'ARM presentation highlights',
+      thumbnail: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      type: 'image',
       src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       alt: 'Networking event'
     },
     {
-      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      alt: 'Workshop session'
-    },
-    {
+      type: 'image',
       src: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       alt: 'Panel discussion'
     },
     {
+      type: 'image',
       src: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       alt: 'Medical equipment display'
     }
   ];
 
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % images.length);
+  const nextMedia = () => {
+    setCurrentMedia((prev) => (prev + 1) % mediaItems.length);
   };
 
-  const prevImage = () => {
-    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+  const prevMedia = () => {
+    setCurrentMedia((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
   };
 
   return (
@@ -53,56 +80,71 @@ const Gallery = () => {
             ARM Gallery
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Highlights from our previous ARM and events
+            Highlights from our previous ARM events
           </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
           <div className="relative mb-8">
             <motion.div
-              key={currentImage}
+              key={currentMedia}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="relative overflow-hidden rounded-xl shadow-2xl"
+              className="relative overflow-hidden rounded-xl shadow-2xl h-96"
             >
-              <img
-                src={images[currentImage].src}
-                alt={images[currentImage].alt}
-                className="w-full h-96 object-cover"
-              />
+              {mediaItems[currentMedia].type === 'video' ? (
+                <iframe
+                  src={mediaItems[currentMedia].src}
+                  title={mediaItems[currentMedia].alt}
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full object-cover"
+                ></iframe>
+              ) : (
+                <img
+                  src={mediaItems[currentMedia].src}
+                  alt={mediaItems[currentMedia].alt}
+                  className="w-full h-full object-cover"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
             </motion.div>
 
             <button
-              onClick={prevImage}
+              onClick={prevMedia}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-colors"
             >
-              <SafeIcon icon={FiChevronLeft} className="w-6 h-6" />
+              <Icon d="M15 18l-6-6 6-6" className="w-6 h-6" />
             </button>
 
             <button
-              onClick={nextImage}
+              onClick={nextMedia}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-colors"
             >
-              <SafeIcon icon={FiChevronRight} className="w-6 h-6" />
+              <Icon d="M9 18l6-6-6-6" className="w-6 h-6" />
             </button>
           </div>
 
           <div className="grid grid-cols-5 gap-4 mb-8">
-            {images.map((image, index) => (
+            {mediaItems.map((media, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentImage(index)}
+                onClick={() => setCurrentMedia(index)}
                 className={`relative overflow-hidden rounded-lg transition-all duration-300 ${
-                  currentImage === index ? 'ring-2 ring-red-500' : 'hover:opacity-80'
+                  currentMedia === index ? 'ring-2 ring-red-500' : 'hover:opacity-80'
                 }`}
               >
                 <img
-                  src={image.src}
-                  alt={image.alt}
+                  src={media.type === 'video' ? media.thumbnail : media.src}
+                  alt={media.alt}
                   className="w-full h-20 object-cover"
                 />
+                {media.type === 'video' && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+                    <Icon d="M5 3l14 9-14 9V3z" className="w-8 h-8" />
+                  </div>
+                )}
               </button>
             ))}
           </div>
@@ -119,8 +161,8 @@ const Gallery = () => {
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
               />
-              <SafeIcon icon={FiPlay} className="w-5 h-5 relative z-10" />
-              <span className="relative z-10">Watch 2024 Highlights</span>
+              <Icon d="M5 3l14 9-14 9V3z" className="w-5 h-5 relative z-10" />
+              <span className="relative z-10">Watch ARM 2024 Highlights</span>
             </motion.button>
           </div>
         </div>
