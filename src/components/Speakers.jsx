@@ -15,7 +15,7 @@ const Speakers = () => {
       title: 'State Minister',
       institution: 'Ministry of Health, Ethiopia',
       bio:  ' H.E. Dr. Dereje Duguma is instrumental in the implementation of national health policies and the oversight of key public health programs. His work focuses on advancing healthcare access and improving health outcomes for all Ethiopians.',
-      image:  'https://addisfortune.news/wp-content/uploads/2025/05/dereje-duguma.jpg'
+      image:  'https://www.moh.gov.et/sites/default/files/2021-09/photo_2021-09-30_14-53-06.jpg'
     },
     {
       name: ' H.E. Frehiwot Abebe',
