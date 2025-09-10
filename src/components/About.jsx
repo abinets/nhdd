@@ -10,17 +10,17 @@ const About = () => {
     {
       icon: FiMic,
       title: '20+ Sessions',
-      description: 'Comprehensive presentations covering the latest in Health care research and clinical practice'
+      description: 'Reviewing annual health reports and engaging in collaborative panel discussions.'
     },
     {
       icon: FiUsers,
-      title: '25+  Speakers',
-      description: 'World-renowned experts sharing cutting-edge insights and breakthrough discoveries'
+      title: '25+ Speakers',
+      description: 'Higher officials, donors, partners, and healthcare leaders sharing their insights.'
     },
     {
       icon: FiBookOpen,
-      title: '8+ Side Discussions',
-      description: 'Side discussion and learning experiences with advanced Health and intervention techniques'
+      title: '8+ Side Events',
+      description: 'Field visits, an awards ceremony, and discussions on advancing the health sector.'
     }
   ];
 
@@ -39,14 +39,14 @@ const About = () => {
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-              The Annual Review Meeting 2025 brings together leading Health care specialists, researchers, 
-              and healthcare professionals from around the world to share cutting-edge research, innovative 
-              treatment approaches, and collaborative solutions for advancing health care service through Digitilization.
+              The 27th Annual Review Meeting brings together key healthcare stakeholders, including partners, donors,
+              and higher officials from various regions. The primary goal is to collaboratively review the annual
+              health reports and engage in panel discussions on advancing the nation's health sector through
+              digitalization.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed">
-              Our mission focuses on pioneering gender-based Health care, exploring the role of 
-              artificial intelligence in digital Health, and fostering international collaboration to tackle 
-              the most pressing challenges in cardiac medicine today.
+              This year, our mission is clear: to gain significant health improvements through sustainable investments
+              and innovations.
             </p>
           </div>
         </motion.div>
