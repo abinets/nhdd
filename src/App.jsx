@@ -12,7 +12,7 @@ import Resources from './components/Resources';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import SiteVisits from './components/SiteVisits';
+import OnlineEvent from './components/OnlineEvent';
 import Awardees from './components/Awardees';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
           <Venue />
           <Sponsors />
           <Awardees />
-          <SiteVisits/>
+          <OnlineEvent />
           <Resources />
           <Gallery />
           <Contact />

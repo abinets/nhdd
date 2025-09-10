@@ -22,10 +22,10 @@ const Header = () => {
     { name: 'About', href: '#about' },
     { name: 'Speakers', href: '#speakers' },
     { name: 'Schedule', href: '#schedule' },
-    { name: 'Venue', href: '#venue' },
+    { name: 'Itinerary', href: '#visits' },
     { name: 'Resources', href: '#Resources' },
     { name: 'Awardees', href: '#awardees' },
-    { name: 'Visits', href: '#SiteVisits' },
+    { name: 'Online', href: '#online-event' },
     { name: 'Contact', href: '#contact' }
   ];
 
