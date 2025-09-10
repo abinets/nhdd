@@ -10,38 +10,40 @@ const Schedule = () => {
 
   const days = [
     {
-      date: 'October 16',
+      date: 'October 22',
       title: 'Day 1',
       sessions: [
-        { time: '9:00 AM', title: 'Opening Ceremony & Keynote', speaker: 'Dr. Emily Chen' },
-        { time: '10:30 AM', title: 'AI in Cardiac Diagnostics', speaker: 'Dr. Ahmed Yusuf' },
-        { time: '12:00 PM', title: 'Lunch & Networking', speaker: '' },
-        { time: '1:30 PM', title: 'Gender-Based Health Care', speaker: 'Dr. Sophie Gagnon' },
-        { time: '3:00 PM', title: 'Interventional Cardiology Workshop', speaker: 'Dr. Lucas Moreau' },
-        { time: '4:30 PM', title: 'Panel Discussion: Future of Cardiology', speaker: 'All Speakers' }
+        { time: '8:00 AM', title: 'Field Visit Diparture from Town', speaker: 'Led By Coordinators' },
+        { time: '10:30 AM', title: 'Arrive on Selected Sites', speaker: 'Led By Higher Officials' },
+        { time: '12:00 PM', title: 'Lunch & Networking', speaker: 'Led By Site Coordinators' },
+        { time: '1:30 PM', title: 'Selected Facilities Visit', speaker: 'Led By Higher Officials' },
+        { time: '3:00 PM', title: 'Discussion and Feedback', speaker: 'Led By Higher Officials' },
+        { time: '4:30 PM', title: 'Return back to the Town', speaker: 'Led By Coordinators' }
       ]
     },
     {
-      date: 'October 17',
+      date: 'October 23',
       title: 'Day 2',
       sessions: [
-        { time: '9:00 AM', title: 'Cardiac Imaging Innovations', speaker: 'Dr. Emily Chen' },
-        { time: '10:30 AM', title: 'Regenerative Medicine in Cardiology', speaker: 'Dr. Lucas Moreau' },
+        { time: '9:00 AM', title: 'Opening Remark', speaker: 'Dr. Mekdes Daba' },
+        { time: '9:30 AM', title: 'Key Note Remark' , speaker: 'Regional Representative' },
+        { time: '10:00 AM', title: 'Award Ceremony' , speaker: 'Led By Coordinators' },
+        { time: '11:00 AM', title: 'Exhibition Visit' , speaker: 'Led by Coordinators' },
         { time: '12:00 PM', title: 'Lunch & Poster Session', speaker: '' },
-        { time: '1:30 PM', title: 'Preventive Cardiology Strategies', speaker: 'Dr. Sophie Gagnon' },
-        { time: '3:00 PM', title: 'Machine Learning Applications', speaker: 'Dr. Ahmed Yusuf' },
-        { time: '4:30 PM', title: 'Case Studies & Best Practices', speaker: 'Multiple Speakers' }
+        { time: '1:30 PM', title: 'Pannel Discussion', speaker: 'Led by Coordinators' },
+        { time: '3:00 PM', title: 'Pannel Discussion', speaker: 'Led by Coordinators' },
+        { time: '4:30 PM', title: 'Day 1 Recap', speaker: 'Dr. Mekdes Daba' }
       ]
     },
     {
-      date: 'October 18',
+      date: 'October 24',
       title: 'Day 3',
       sessions: [
-        { time: '9:00 AM', title: 'Pediatric Cardiology Advances', speaker: 'Dr. Emily Chen' },
-        { time: '10:30 AM', title: 'Cardiac Surgery Innovations', speaker: 'Dr. Lucas Moreau' },
+        { time: '9:00 AM', title: 'Annual Performance Report', speaker: 'Dr. Muluken K.' },
+        { time: '10:30 AM', title: 'Pannel Discussion', speaker: 'Dr. Habas A' },
         { time: '12:00 PM', title: 'Lunch & Awards Ceremony', speaker: '' },
-        { time: '1:30 PM', title: 'Global Health Initiatives', speaker: 'Dr. Sophie Gagnon' },
-        { time: '3:00 PM', title: 'Future Research Directions', speaker: 'Dr. Ahmed Yusuf' },
+        { time: '1:30 PM', title: 'Global Health Inoviations and Local Context', speaker: 'Dr. Sophie Gagnon' },
+        { time: '3:00 PM', title: 'Pannel Discussion', speaker: 'Dr. Ahmed Yusuf' },
         { time: '4:30 PM', title: 'Closing Remarks & Networking', speaker: 'ARM Committee' }
       ]
     }
