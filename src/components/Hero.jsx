@@ -366,7 +366,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-                     ዘላቂ ኢንቨስትመንትና ፈጠራ፣  ለጤናው ዘርፍ  እመርታ
+                     ዘላቂ ኢንቨስትመንትና ፈጠራ፣ ለጤናው ዘርፍ እመርታ
 
           </motion.p>
           <motion.div
