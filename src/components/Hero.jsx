@@ -359,7 +359,16 @@ const Hero = () => {
           >
             Driving Health Gains Through Sustainable Investments and Innovations
           </motion.p>
+ <motion.p
+            // Made the text bold
+            className="text-xl md:text-2xl mb-8 text-blue-100 font-bold"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+                     ዘላቂ ኢንቨስትመንትና ፈጠራ፣  ለጤናው ዘርፍ  እመርታ
 
+          </motion.p>
           <motion.div
             className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8 mb-12"
             initial={{ opacity: 0, y: 20 }}
