@@ -8,7 +8,7 @@ const { FiMapPin, FiInfo, FiImage, FiClock, FiCheckCircle } = FiIcons;
 const Venue = () => {
   const siteLocations = [
     {
-      title: 'Abajifar Palace Museum',
+      title: 'Seka Woreda',
       description: 'Step back in time at the historic Abajifar Palace, once the residence of King Abajifar. This site offers cultural insights and a glimpse into the regional history, providing a unique backdrop for ARM discussions.',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.805566373801!2d36.82729111477063!3d7.678783694409396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b0758410940199%3A0x6a05e55b4b1a4a5!2sAbajifar%20Palace%20Museum!5e0!3m2!1sen!2set!4v1678912345679!5m2!1sen!2set',
       images: [
@@ -19,14 +19,14 @@ const Venue = () => {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtVfkEmLuRk4xdG73gPbhmWtaUnaOiBoT85nfxbxeabWu-5rkmApMhV_AnmRDSz5QexZc&usqp=CAU',
       ],
       visitInfo: [
-        'Date: October 15, 2025',
+        'Date: October 22, 2025',
         'Total Participants: 80',
-        'Distance from Jimma City: 5 km',
-        'Focus: Cultural exchange, historical context for ARM visitors'
+        'Distance from Jimma City: 45 km',
+        'Focus: Community health initiatives, rural healthcare challenges for ARM attendees'
       ],
     },
     {
-      title: 'Boye Lake Recreational Area',
+      title: 'Agaro  Area',
       description: 'A serene lake perfect for relaxation and recreation. Recent restoration efforts have made it a vibrant spot, offering a refreshing break and informal networking opportunity for ARM participants.',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.67056024467!2d36.816654014770685!3d7.694697994399763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b074a3502b4d21%3A0x7d2836696b9d6e8e!2sLake%20Boye!5e0!3m2!1sen!2set!4v1678912345680!5m2=1sen!2set',
       images: [
@@ -38,12 +38,12 @@ const Venue = () => {
       visitInfo: [
         'Date: October 15, 2025',
         'Total Participants: 100',
-        'Distance from Jimma City: 7 km',
+        'Distance from Jimma City:60 km',
         'Focus: Relaxation, informal networking for ARM attendees'
       ],
     },
     {
-      title: 'Jimma Central Market',
+      title: 'Jimma Town Area',
       description: 'Immerse yourself in the bustling atmosphere of Jimma\'s central market. Experience local commerce and traditional Ethiopian goods, offering a cultural immersion for ARM guests.',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.81830206259!2d36.830635214770635!3d7.677322994410291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b07584102b4d23%3A0x7d2836696b9d6e8f!2sJimma%20Central%20Market!5e0!3m2!1sen!2set!4v1678912345681!5m2!1sen!2set',
       images: [
@@ -59,7 +59,7 @@ const Venue = () => {
       ],
     },
     {
-      title: 'Jimma Town Hall',
+      title: 'Limmu Genet Area',
       description: 'A significant administrative building with architectural interest. While primarily an administrative center, its design reflects the town\'s governance, relevant for understanding local policy context for ARM.',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.8291884589286!2d36.82944321477062!3d7.676067994411139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b07584104c01d1%3A0x7d2836696b9d6e90!2sJimma%20Town%20Hall!5e0!3m2!1sen!2set!4v1678912345682!5m2!1sen!2set',
       images: [
