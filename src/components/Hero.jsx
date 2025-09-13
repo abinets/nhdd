@@ -85,7 +85,7 @@ const SemiCircleGauge = ({ timeLeft }) => {
   // Maximum value for the gauge (assuming a max of 365 days for the full semi-circle)
   const maxDays = 365;
   // Use a fixed value for demonstration as requested
-  const daysRemaining = 39;
+  const daysRemaining = 38;
 
   // Define colors for the gradient
   const gradientColors = [
@@ -366,7 +366,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-                     ዘላቂ ኢንቨስትመንትና ፈጠራ፣ ለጤናው ዘርፍ እመርታ!
+                     ዘላቂ ኢንቨስትመንት እና ፈጠራ፤  ለጠንካራ የጤና ስርአት!
 
           </motion.p>
           <motion.div
