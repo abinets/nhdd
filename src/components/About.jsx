@@ -66,6 +66,9 @@ const About = ({ onRegisterClick }) => {
             About the ARM
           </h2>
           <div className="max-w-4xl mx-auto">
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+The Annual Review Meeting (ARM) of the Ethiopian Ministry of Health is an annual event that brings together stakeholders to evaluate the health sector's performance, share best practices, and tackle challenges. It is a key forum for celebrating achievements, assessing progress toward strategic goals, and cooperatively establishing priorities for the following year.
+        </p>
             <p className="text-lg text-gray-700 mb-8 leading-relaxed">
               The 27th Annual Review Meeting brings together key healthcare stakeholders, including partners, donors,
               and higher officials from various regions. The primary goal is to collaboratively review the annual

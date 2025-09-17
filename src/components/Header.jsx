@@ -44,9 +44,9 @@ const Header = () => {
 
   const FlipText = ({ children, className }) => {
     const [isHovered, setIsHovered] = useState(false);
-    
+
     return (
-      <div 
+      <div
         className={`relative overflow-hidden ${className}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -89,15 +89,15 @@ const Header = () => {
             >
               <SafeIcon icon={isMobileMenuOpen ? FiX : FiMenu} className="w-6 h-6" />
             </button>
-            
-            <motion.div 
+
+            <motion.div
               className="flex items-center space-x-1"
               whileHover={{ scale: 1.05 }}
             >
               <div className="w-10 h-10 flex items-center justify-center">
-                <img 
-                  src="https://hispmd.moh.gov.et/app/MOH_logo_text_white.png" 
-                  alt="Ministry of Health Ethiopia Logo" 
+                <img
+                  src="https://hispmd.moh.gov.et/app/MOH_logo_text_white.png"
+                  alt="Ministry of Health Ethiopia Logo"
                   className="rounded-full w-10 h-10"
                 />
               </div>
@@ -136,19 +136,21 @@ const Header = () => {
                 <FlipText>{item.name}</FlipText>
               </button>
             ))}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative overflow-hidden bg-blue-600 text-white px-6 py-2 rounded-full transition-all duration-300 group"
-            >
-              <motion.div
-                className="absolute inset-0 bg-[#52542]"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-              <span className="relative z-10">Register</span>
-            </motion.button>
+            <a href="http://196.188.63.190:3000/users/sign_in">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative overflow-hidden bg-blue-600 text-white px-6 py-2 rounded-full transition-all duration-300 group"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-[#102542]"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="relative z-10">Register</span>
+              </motion.button>
+            </a>
           </nav>
         </div>
 
@@ -168,15 +170,17 @@ const Header = () => {
                 {item.name}
               </button>
             ))}
-            <button className="w-full bg-blue-600 text-white py-2 rounded-full mt-4 hover:bg-blue-700 transition-colors relative overflow-hidden group">
-              <motion.div
-                className="absolute inset-0 bg-[#102542]"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-              <span className="relative z-10">Register</span>
-            </button>
+            <a href="http://196.188.63.190:3000/users/sign_in">
+              <button className="w-full bg-blue-600 text-white py-2 rounded-full mt-4 hover:bg-blue-700 transition-colors relative overflow-hidden group">
+                <motion.div
+                  className="absolute inset-0 bg-[#102542]"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="relative z-10">Register</span>
+              </button>
+            </a>
           </motion.div>
         )}
       </div>

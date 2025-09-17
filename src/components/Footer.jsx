@@ -2,8 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
+import { FaFacebook, FaTwitter, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 
-const { FiTwitter, FiLinkedin, FiFacebook, FiInstagram, FiMail, FiPhone } = FiIcons;
+const { FiMail, FiPhone, FiGlobe } = FiIcons;
 
 const Footer = () => {
   const quickLinks = [
@@ -16,10 +17,11 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: FiTwitter, href: '#', label: 'Twitter' },
-    { icon: FiLinkedin, href: '#', label: 'LinkedIn' },
-    { icon: FiFacebook, href: '#', label: 'Facebook' },
-    { icon: FiInstagram, href: '#', label: 'Instagram' }
+    { icon: FiGlobe, href: 'https://arm.moh.gov.et', label: 'Website' },
+    { icon: FaFacebook, href: 'https://www.facebook.com/FMoHealth', label: 'Facebook' },
+    { icon: FaTwitter, href: 'https://twitter.com/FMoHealthEthiopia', label: 'Twitter' },
+    { icon: FaYoutube, href: 'https://www.youtube.com/channel/UC-your-channel-id', label: 'YouTube' },
+    { icon: FaLinkedinIn, href: 'https://www.linkedin.com/company/ministry-of-health-ethiopia/', label: 'LinkedIn' }, // Added a hypothetical LinkedIn link
   ];
 
   const scrollToSection = (href) => {
@@ -99,11 +101,13 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
+            <div className="flex flex-wrap gap-4">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className="w-10 h-10 bg-blue-800 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors"

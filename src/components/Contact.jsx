@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
+import { FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa'; // Import social media icons
 
-const { FiMail, FiPhone, FiMapPin, FiSend } = FiIcons;
+const { FiMail, FiPhone, FiMapPin, FiSend, FiGlobe } = FiIcons;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -64,7 +65,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-800">Email</p>
-                    <p className="text-gray-600">info@globalcardiosummit.com</p>
+                    <p className="text-gray-600">arm@moh.gov.et</p>
                   </div>
                 </div>
 
@@ -85,11 +86,60 @@ const Contact = () => {
                   <div>
                     <p className="font-semibold text-gray-800">Address</p>
                     <p className="text-gray-600">
-                      Aba Jifar center<br />
-                      Jimma, City, Oromia
+                      Ministry of Health<br />
+                      Addis Ababa, Ethiopia
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* New section for social media */}
+            <div>
+              <h3 className="text-2xl font-bold text-blue-900 mb-6">
+                Connect with Us
+              </h3>
+              <div className="flex space-x-4">
+                <motion.a 
+                  href="https://arm.moh.gov.et" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full transition-colors hover:bg-blue-600 hover:text-white"
+                >
+                  <SafeIcon icon={FiGlobe} className="w-6 h-6" />
+                </motion.a>
+                <motion.a
+                  href="https://www.facebook.com/FMoHealth"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex items-center justify-center w-12 h-12 bg-gray-100 text-gray-600 rounded-full transition-colors hover:bg-blue-600 hover:text-white"
+                >
+                  <SafeIcon icon={FaFacebook} className="w-6 h-6" />
+                </motion.a>
+                <motion.a
+                  href="https://twitter.com/FMoHealthEthiopia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex items-center justify-center w-12 h-12 bg-gray-100 text-gray-600 rounded-full transition-colors hover:bg-blue-400 hover:text-white"
+                >
+                  <SafeIcon icon={FaTwitter} className="w-6 h-6" />
+                </motion.a>
+                <motion.a
+                  href="https://www.youtube.com/channel/UC-your-channel-id" // Placeholder URL, you'll need the correct one
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex items-center justify-center w-12 h-12 bg-gray-100 text-gray-600 rounded-full transition-colors hover:bg-red-600 hover:text-white"
+                >
+                  <SafeIcon icon={FaYoutube} className="w-6 h-6" />
+                </motion.a>
               </div>
             </div>
 
@@ -98,7 +148,7 @@ const Contact = () => {
                 ARM Information
               </h4>
               <p className="text-blue-100 mb-4">
-                For registration assistance, speaker inquiries, or general conference 
+                For registration assistance, speaker inquiries, or general conference
                 information, please don't hesitate to reach out to our team.
               </p>
               <p className="text-blue-100">
@@ -117,7 +167,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-blue-900 mb-6">
                 Send us a Message
               </h3>
-              
+
               <div className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">

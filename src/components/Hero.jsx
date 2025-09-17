@@ -85,7 +85,7 @@ const SemiCircleGauge = ({ timeLeft }) => {
   // Maximum value for the gauge (assuming a max of 365 days for the full semi-circle)
   const maxDays = 365;
   // Use a fixed value for demonstration as requested
-  const daysRemaining = 37;
+  const daysRemaining = 35;
 
   // Define colors for the gradient
   const gradientColors = [
@@ -400,21 +400,22 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
-            // Removed the mb-8 md:mb-0 class here
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative overflow-hidden bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 group"
-            >
-              <motion.div
-                className="absolute inset-0 bg-[#102542]"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-              <span className="relative z-10">Register Now</span>
-            </motion.button>
+            <a href="http://196.188.63.190:3000/users/sign_in">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative overflow-hidden bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 group"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-[#102542]"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="relative z-10">Register Now</span>
+              </motion.button>
+            </a>
           </motion.div>
         </motion.div>
       </div>
