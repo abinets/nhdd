@@ -25,6 +25,7 @@ const Header = () => {
     { name: 'Itinerary', href: '#visits' },
     { name: 'Resources', href: '#Resources' },
     { name: 'Awardees', href: '#awardees' },
+    { name: 'Committee', href: '#core-arm-committee' },
     { name: 'Online', href: '#online-event' },
     { name: 'Contact', href: '#contact' }
   ];

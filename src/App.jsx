@@ -14,6 +14,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import OnlineEvent from './components/OnlineEvent';
 import Awardees from './components/Awardees';
+import CoreArmCommittee from './components/CoreArmCommittee';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <main>
           <Hero />
           <About />
+      
           <Speakers />
           <Schedule />
           <Venue />
@@ -30,6 +32,7 @@ function App() {
           <Awardees />
           <OnlineEvent />
           <Resources />
+          <CoreArmCommittee />
           <Gallery />
           <Contact />
         </main>
