@@ -9,15 +9,12 @@ const { FiMail, FiPhone, FiGlobe } = FiIcons;
 const Footer = () => {
   const quickLinks = [
     { name: 'About', href: '#about' },
-    { name: 'Speakers', href: '#speakers' },
-    { name: 'Schedule', href: '#schedule' },
-    { name: 'Venue', href: '#venue' },
-    { name: 'Resources', href: '#Resources' },
+    { name: 'Resources', href: '#resources' },
     { name: 'Contact', href: '#contact' }
   ];
 
   const socialLinks = [
-    { icon: FiGlobe, href: 'https://arm.moh.gov.et', label: 'Website' },
+    { icon: FiGlobe, href: 'https://nhdd.moh.gov.et', label: 'Website' },
     { icon: FaFacebook, href: 'https://www.facebook.com/FMoHealth', label: 'Facebook' },
     { icon: FaTwitter, href: 'https://twitter.com/FMoHealthEthiopia', label: 'Twitter' },
     { icon: FaYoutube, href: 'https://www.youtube.com/channel/UC-your-channel-id', label: 'YouTube' },
@@ -49,22 +46,20 @@ const Footer = () => {
           >
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">ARM</span>
+                <span className="text-white font-bold text-lg">NHDD</span>
               </div>
               <div>
-                <h1 className="font-bold text-xl">27th Annual Review Meeting</h1>
-                <p className="text-blue-200 text-sm">2025</p>
+                <h1 className="font-bold text-xl">National Health Data Dictionary App</h1>
+                <p className="text-blue-200 text-sm"> </p>
               </div>
             </div>
             <p className="text-blue-200 mb-6 leading-relaxed">
-              Join us for three days of groundbreaking Health care research, 
-              innovative treatment approaches, and international collaboration in 
-              the heart of Jimma.
+              Serving as a national effort to standardize health data, improve data interoperability, and strengthen Ethiopia's digital health ecosystem for better public health outcomes.
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-3">
                 <SafeIcon icon={FiMail} className="w-5 h-5 text-red-400" />
-                <span className="text-blue-200">arm2025@moh.gov.et</span>
+                <span className="text-blue-200">nhdd@moh.gov.et</span>
               </div>
               <div className="flex items-center space-x-3">
                 <SafeIcon icon={FiPhone} className="w-5 h-5 text-red-400" />
@@ -120,7 +115,7 @@ const Footer = () => {
             <div className="mt-6">
               <h4 className="text-sm font-semibold mb-2">Newsletter</h4>
               <p className="text-blue-200 text-sm mb-3">
-                Stay updated with conference news
+                Stay updated on app news and updates
               </p>
               <div className="flex">
                 <input
@@ -144,7 +139,7 @@ const Footer = () => {
 
         <div className="border-t border-blue-800 mt-12 pt-8 text-center">
           <p className="text-blue-200">
-            © 2025 Annual Review Meeting. All rights reserved.
+            © 2024 National Health Data Dictionary App. All rights reserved.
           </p>
         </div>
       </div>

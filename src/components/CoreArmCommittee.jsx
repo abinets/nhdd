@@ -10,6 +10,9 @@ const directImageUrls = [
 'https://www.moh.gov.et/sites/default/files/2021-06/0B1A9957%20-%20Copy.JPG',
 'https://www.moh.gov.et/sites/default/files/2024-03/yehenew.jpg',
 'https://www.moh.gov.et/sites/default/files/2024-03/photo_2023-07-03_10-10-26.jpg',
+'https://media.licdn.com/dms/image/v2/D4D03AQHpC8c9j4GPmg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1695112592329?e=1761177600&v=beta&t=ueoy3mdVR-bM7YwhSg8MYDsBv-Ok4SO25FPbsDQCq0g',
+'https://media.licdn.com/dms/image/v2/D4E03AQE0w3qavweVwQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1695479892595?e=1761177600&v=beta&t=Sy-8kYmiNLphMQhNsNN-wjLttA9BBxXWK_DM3dLrS0g',
+'https://media.licdn.com/dms/image/v2/D4D03AQGfa467VdvrRg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1720374018409?e=1761177600&v=beta&t=FSJujiJMWjBybdVZCePuIOKlKtV1HoU5e1GL8891J5Y',
 ];
 
 const committeeMembers = [
@@ -17,59 +20,73 @@ const committeeMembers = [
     name: 'Dr. Mebrhatu M.', 
     position: 'Chief of Staff',
     department: 'Ministry of Health',
-    role: 'Provides strategic leadership and ultimate oversight for the entire initiative.',
+    role: 'Provides strategic leadership and oversight for all ministerial initiatives, ensuring alignment with national health goals.',
     imageUrl: directImageUrls[0]
   }, 
-
-  { 
-    name: 'Dr. Tegene Assefa', 
-    position: 'CEO',
-    department: 'Public Relations - MoH',
-    role: 'Manages all public relation  and communocation surveillance activities.',
-    imageUrl: directImageUrls[1]
-  },
-    { 
-    name: 'Mr. Gemechis Melkamu', 
-    position: 'LEO',
-    department: 'Digital Health - MoH',
-    role: 'Directs Digital Health activities formulation and ensures alignment with national health goals.',
-    imageUrl: directImageUrls[2]
-  },
-  { 
-    name: 'Mr. Eskinder Lakew', 
-    position: 'CEO',
-    department: 'Basic Service Executive - MoH',
-    role: 'Oversees the implementation of all national Basic Service programs.',
-    imageUrl: directImageUrls[3]
-  },
   { 
     name: 'Dr. Muluken Balcha', 
     position: 'CEO',
     department: 'Strategic Affairs/SAO',
-    role: 'Coordinates Strategic Affairs response strategies for major health programs.',
+    role: 'Leads the strategic planning and execution of key health programs and partnerships.',
     imageUrl: directImageUrls[4]
+  },
+  { 
+    name: 'Dr. Tegene Assefa', 
+    position: 'CEO',
+    department: 'Public Relations - MoH',
+    role: 'Manages public communication and media relations to enhance public health awareness and transparency.',
+    imageUrl: directImageUrls[1]
   },
   { 
     name: 'Mr. Solomon Ejigu', 
     position: 'LEO',
     department: 'Health Finance System  - MoH',
-    role: 'Leads efforts to improve the efficiency and resilience of health Finance System .',
+    role: 'Oversees the financial management and investment in health systems to ensure sustainable funding.',
     imageUrl: directImageUrls[5]
   },
-  { 
-    name: 'Dr. Abas Hassen', 
-    position: 'LEO',
-    department: 'Health Innovation - MoH',
-    role: 'Oversees the day-to-day operations and ensures project timelines are met.',
-    imageUrl: directImageUrls[7]
+   { 
+    name: 'Mr. Eskinder Lakew', 
+    position: 'CEO',
+    department: 'Basic Service Executive - MoH',
+    role: 'Directs the implementation and expansion of essential health services across the country.',
+    imageUrl: directImageUrls[3]
   },
-  { 
+    { 
+    name: 'Mr. Gemechis Melkamu', 
+    position: 'LEO',
+    department: 'Digital Health - MoH',
+    role: 'Leads the development and integration of digital health solutions to modernize healthcare delivery.',
+    imageUrl: directImageUrls[2]
+  },
+ { 
     name: 'Mr. Yehenew Berhane', 
     position: 'CEO',
     department: 'Procurement Executive. - MoH',
-    role: 'Manages the national procurement and distribution of supplies.',
+    role: 'Manages the procurement and supply chain for medical equipment, pharmaceuticals, and other essential goods.',
     imageUrl: directImageUrls[6]
   },
+  { 
+    name: 'Mrs. Rahima Skihur', 
+    position: 'Senior Advisor',
+    department: 'Misinters\' Office - MoH',
+    role: 'Provides expert counsel on key policy decisions and strategic initiatives for the Minister\'s Office.',
+    imageUrl: directImageUrls[8]
+  },
+   { 
+    name: 'Mr. Mesoud Mohammed ', 
+    position: 'Lead',
+    department: 'Strategic Affairs - MoH',
+    role: 'Manages critical projects within the Strategic Affairs Office, ensuring goals are met efficiently.',
+    imageUrl: directImageUrls[9]
+  },
+   { 
+    name: 'Mr. Assegid Samuel', 
+    position: 'LEO',
+    department: 'Human Resource Development - MoH',
+    role: 'Focuses on building the capacity and skills of the health workforce through training and development programs.',
+    imageUrl: directImageUrls[10]
+  },
+  
 ];
 
 const containerVariants = {

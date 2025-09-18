@@ -39,10 +39,10 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-            Contact Us
+            Get in Touch with the NHDD Team
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Have questions about the conference? We're here to help!
+            We're here to help you with any questions about the National Health Data Dictionary App.
           </p>
         </motion.div>
 
@@ -56,7 +56,7 @@ const Contact = () => {
           >
             <div>
               <h3 className="text-2xl font-bold text-blue-900 mb-6">
-                Get in Touch
+                Contact Information
               </h3>
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
@@ -65,7 +65,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-800">Email</p>
-                    <p className="text-gray-600">arm@moh.gov.et</p>
+                    <p className="text-gray-600">nhdd@moh.gov.et</p>
                   </div>
                 </div>
 
@@ -101,7 +101,7 @@ const Contact = () => {
               </h3>
               <div className="flex space-x-4">
                 <motion.a 
-                  href="https://arm.moh.gov.et" 
+                  href="https://nhdd.moh.gov.et" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -5 }}
@@ -145,14 +145,13 @@ const Contact = () => {
 
             <div className="bg-gradient-to-r from-blue-900 to-red-600 text-white rounded-xl p-6">
               <h4 className="text-xl font-semibold mb-3">
-                ARM Information
+                NHDD App Information
               </h4>
               <p className="text-blue-100 mb-4">
-                For registration assistance, speaker inquiries, or general conference
-                information, please don't hesitate to reach out to our team.
+                For technical inquiries, app support, or general information about the National Health Data Dictionary App, please feel free to reach out to our team.
               </p>
               <p className="text-blue-100">
-                We typically respond within 24 hours.
+                We Appretiate  your contribution.
               </p>
             </div>
           </motion.div>
@@ -165,7 +164,7 @@ const Contact = () => {
           >
             <form onSubmit={handleSubmit} className="bg-gray-50 rounded-xl p-8 shadow-lg">
               <h3 className="text-2xl font-bold text-blue-900 mb-6">
-                Send us a Message
+                Send Us a Message
               </h3>
 
               <div className="space-y-6">

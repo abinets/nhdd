@@ -18,15 +18,8 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#hero' },
-    // { name: 'About', href: '#about' },
-    { name: 'Speakers', href: '#speakers' },
-    { name: 'Schedule', href: '#schedule' },
-    { name: 'Itinerary', href: '#visits' },
-    { name: 'Resources', href: '#Resources' },
-    { name: 'Awardees', href: '#awardees' },
-    { name: 'Committee', href: '#core-arm-committee' },
-    { name: 'Online', href: '#online-event' },
+    { name: 'Disease List', href: '#diseaseList' },
+    { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -86,7 +79,7 @@ const Header = () => {
           <div className="flex items-center space-x-2"> {/* New flex container for the menu and text */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`md:hidden ${isScrolled ? 'text-gray-700' : 'text-white'}`}
+              className={`md:hidden ${isScrolled ? 'text-gray-700' : 'text-blue-900'}`}
             >
               <SafeIcon icon={isMobileMenuOpen ? FiX : FiMenu} className="w-6 h-6" />
             </button>
@@ -97,28 +90,28 @@ const Header = () => {
             >
               <div className="w-10 h-10 flex items-center justify-center">
                 <img
-                  src="https://hispmd.moh.gov.et/app/MOH_logo_text_white.png"
-                  alt="Ministry of Health Ethiopia Logo"
+                  src="src/assets/logo.png"
+                  alt="NHDD Logo"
                   className="rounded-full w-10 h-10"
                 />
               </div>
               {/* Conditional rendering for mobile and desktop views */}
               <div className="hidden md:block">
-                <h1 className={`font-bold text-xl ${isScrolled ? 'text-blue-900' : 'text-white'}`}>
-                 Ministry of Health, Ethiopia
+                <h1 className={`font-bold text-xl ${isScrolled ? 'text-blue-900' : 'text-blue-900'}`}>
+                 National Health Data Dictionary
                 </h1>
-                <p className={`text-sm ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>
-                  2025
+                <p className={`text-sm ${isScrolled ? 'text-gray-600' : 'text-blue-600'}`}>
+                  Ministry of Health
                 </p>
               </div>
               {/* Mobile-specific layout: breaks the title into two lines and reduces font size */}
               <div className="block md:hidden">
                 <div className="flex flex-col ml-1">
-                  <h1 className={`font-bold text-sm leading-tight ${isScrolled ? 'text-blue-900' : 'text-white'}`}>
-                    Ministry of Health,
+                  <h1 className={`font-bold text-sm leading-tight ${isScrolled ? 'text-blue-900' : 'text-blue-900'}`}>
+                    NHDD 
                   </h1>
-                  <p className={`text-xs leading-tight ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>
-                    Ethiopia | 2025
+                  <p className={`text-xs leading-tight ${isScrolled ? 'text-gray-600' : 'text-blue-600'}`}>
+                    2024
                   </p>
                 </div>
               </div>
@@ -131,7 +124,7 @@ const Header = () => {
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
                 className={`transition-colors hover:text-blue-600 ${
-                  isScrolled ? 'text-gray-700' : 'text-white'
+                  isScrolled ? 'text-gray-700' : 'text-blue-900'
                 }`}
               >
                 <FlipText>{item.name}</FlipText>
