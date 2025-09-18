@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import { motion } from 'framer-motion';
-import { FaChevronRight, FaChevronDown, FaStar, FaRegStar, FaBars, FaTimes, FaHistory } from 'react-icons/fa';
+import { FaChevronRight, FaChevronDown, FaStar, FaRegStar, FaBars, FaTimes, FaHistory, FaFilter, FaTimesCircle } from 'react-icons/fa';
 
 const CSV_FILE_PATH = '/icd11deaseslist.csv';
 
@@ -29,6 +29,7 @@ const DiseaseList = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [searchHistory, setSearchHistory] = useState([]);
   const [showHistoryDropdown, setShowHistoryDropdown] = useState(false);
+  const [selectedChapter, setSelectedChapter] = useState(null);
 
   useEffect(() => {
     // Load favorites and search history from local storage on initial render
@@ -86,6 +87,15 @@ const DiseaseList = () => {
     localStorage.removeItem('searchHistory');
   };
 
+  const handleFilterByChapter = (chapterId) => {
+    setSelectedChapter(chapterId);
+    setShowSidebar(false);
+  };
+
+  const handleClearFilter = () => {
+    setSelectedChapter(null);
+  };
+
   const groupDiseasesByHierarchy = (data) => {
     const root = {};
     data.forEach(disease => {
@@ -140,14 +150,10 @@ const DiseaseList = () => {
       (disease.BlockL1 && disease.BlockL1.toLowerCase().includes(lowerCaseSearchTerm)) ||
       (disease.BlockL2 && disease.BlockL2.toLowerCase().includes(lowerCaseSearchTerm))
     );
-    const isFavorite = favoriteDiseases.includes(disease.code);
+    const matchesChapter = selectedChapter ? disease['Chapter Name'] === selectedChapter : true;
+    const isFavorite = showFavorites ? favoriteDiseases.includes(disease.code) : true;
     
-    // Only return favorites if the showFavorites filter is active
-    if (showFavorites) {
-      return matchesSearch && isFavorite;
-    }
-    
-    return matchesSearch;
+    return matchesSearch && matchesChapter && isFavorite;
   });
 
   const toggleChapter = (chapterName) => {
@@ -254,14 +260,16 @@ const DiseaseList = () => {
       return acc;
     }, {});
     
+    const chaptersToDisplay = selectedChapter ? [selectedChapter] : Object.keys(groupedDiseases);
+
     return (
-      <div className="flex-1 max-w-4xl p-4 md:p-8 text-left">
+      <div className="flex-1 p-4 md:p-8 text-left">
         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mb-6 relative">
           <div className="relative flex-1 mb-4 sm:mb-0">
             <input
               type="text"
               placeholder="Search by name, code or synonym..."
-              className="w-full p-4 pr-20 text-base border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all"
+              className="w-full p-3 pr-16 text-base border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all text-sm md:text-base"
               value={searchTerm}
               onChange={handleSearchChange}
               onBlur={() => setTimeout(() => setShowHistoryDropdown(false), 200)}
@@ -277,7 +285,7 @@ const DiseaseList = () => {
                   setSearchTerm('');
                   updateSearchHistory(searchTerm);
                 }}
-                className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+                className="absolute right-10 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
               >
                 <FaTimes />
               </button>
@@ -289,25 +297,25 @@ const DiseaseList = () => {
                 e.stopPropagation();
                 setShowHistoryDropdown(!showHistoryDropdown);
               }}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
             >
               <FaHistory />
             </motion.button>
             {showHistoryDropdown && searchHistory.length > 0 && (
-              <div className="absolute z-10 w-full mt-2 bg-white rounded-lg shadow-xl border border-gray-200 py-2">
+              <div className="absolute z-10 w-full mt-2 bg-white rounded-lg shadow-xl border border-gray-200 py-1">
                 {searchHistory.map((historyItem, index) => (
                   <button
                     key={index}
-                    onMouseDown={() => handleSearchHistoryClick(historyItem)} // Use onMouseDown to prevent blur event
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors"
+                    onMouseDown={() => handleSearchHistoryClick(historyItem)}
+                    className="w-full text-left px-3 py-1 text-sm hover:bg-gray-100 transition-colors"
                   >
                     {historyItem}
                   </button>
                 ))}
-                <div className="border-t border-gray-200 mt-2 pt-2">
+                <div className="border-t border-gray-200 mt-1 pt-1">
                   <button
-                    onMouseDown={handleClearHistory} // Use onMouseDown to prevent blur event
-                    className="w-full text-center text-sm text-red-500 hover:text-red-700 px-4 py-2 transition-colors"
+                    onMouseDown={handleClearHistory}
+                    className="w-full text-center text-xs text-red-500 hover:text-red-700 px-3 py-1 transition-colors"
                   >
                     Clear History
                   </button>
@@ -319,7 +327,7 @@ const DiseaseList = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setShowFavorites(!showFavorites)}
-            className={`flex items-center justify-center p-4 text-sm font-semibold rounded-xl shadow-md transition-colors duration-300 w-full sm:w-auto ${
+            className={`flex items-center justify-center p-3 text-sm font-semibold rounded-xl shadow-md transition-colors duration-300 w-full sm:w-auto ${
               showFavorites ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
             }`}
           >
@@ -327,9 +335,22 @@ const DiseaseList = () => {
             {showFavorites ? 'Show All' : 'My Favorites'}
           </motion.button>
         </div>
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-          {Object.keys(groupedDiseases).sort().map((chapterName, chapterIndex) => {
-            const isChapterExpanded = expandedChapters[chapterName];
+        <div className="bg-white rounded-xl shadow-2xl overflow-hidden md:rounded-3xl">
+          {selectedChapter && (
+            <div className="flex items-center justify-between p-4 bg-gray-100 border-b border-gray-200">
+              <span className="text-sm md:text-md font-semibold text-gray-700">
+                Filtered by: <span className="text-blue-600 font-bold">{selectedChapter}</span>
+              </span>
+              <button
+                onClick={handleClearFilter}
+                className="flex items-center text-red-500 hover:text-red-700 text-xs md:text-sm transition-colors"
+              >
+                Clear Filter <FaTimesCircle className="ml-1" />
+              </button>
+            </div>
+          )}
+          {chaptersToDisplay.sort().map((chapterName, chapterIndex) => {
+            const isChapterExpanded = expandedChapters[chapterName] || selectedChapter;
             return (
               <motion.div
                 key={chapterName}
@@ -337,14 +358,14 @@ const DiseaseList = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: chapterIndex * 0.1 }}
                 whileHover={{ y: -5, x: 5, scale: 1.01 }}
-                className="my-4 overflow-hidden shadow-md"
+                className="my-3 overflow-hidden shadow-md"
               >
                 <div
                   onClick={() => toggleChapter(chapterName)}
-                  className="flex items-center justify-between p-6 bg-gray-100 cursor-pointer hover:bg-gray-200 transition-colors"
+                  className="flex items-center justify-between p-4 bg-gray-100 cursor-pointer hover:bg-gray-200 transition-colors"
                 >
-                  <h3 className="text-lg md:text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-gray-600">
-                    <span className="mr-2">{chapterIndex + 1}.</span>{chapterName}
+                  <h3 className="text-sm md:text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-gray-600">
+                    <span className="mr-1">{chapterIndex + 1}.</span>{chapterName}
                   </h3>
                   <span className="text-gray-800 transition-transform duration-300 transform">
                     {isChapterExpanded ? <FaChevronDown /> : <FaChevronRight />}
@@ -359,9 +380,9 @@ const DiseaseList = () => {
                         <div key={blockId}>
                           <div
                             onClick={() => toggleBlock(blockId)}
-                            className="flex items-center justify-between p-4 pl-8 bg-gray-100 cursor-pointer hover:bg-gray-200"
+                            className="flex items-center justify-between p-3 pl-6 bg-gray-100 cursor-pointer hover:bg-gray-200 text-sm"
                           >
-                            <h4 className="text-base font-medium text-gray-800">
+                            <h4 className="font-medium text-gray-800">
                               <span className="font-semibold text-gray-900">{blockId} - </span>
                               {block.name}
                             </h4>
@@ -370,8 +391,7 @@ const DiseaseList = () => {
                             </span>
                           </div>
                           {isBlockExpanded && (
-                            <div className="p-4 pl-12 bg-white">
-                              {/* Render BlockL2s or diseases */}
+                            <div className="p-3 pl-8 bg-white">
                               {Object.keys(block.block2s).length > 0 ? (
                                 Object.keys(block.block2s).sort().map(block2Id => {
                                   const block2 = block.block2s[block2Id];
@@ -380,10 +400,10 @@ const DiseaseList = () => {
                                     <div key={block2Id}>
                                       <div
                                         onClick={() => toggleBlock(block2Id)}
-                                        className="flex items-center p-2 transition-colors cursor-pointer bg-gray-50 hover:bg-gray-100"
+                                        className="flex items-center p-2 transition-colors cursor-pointer bg-gray-50 hover:bg-gray-100 text-xs"
                                       >
-                                        <span className="mr-2 text-gray-500">{isBlock2Expanded ? <FaChevronDown /> : <FaChevronRight />}</span>
-                                        <div className="flex-1 text-sm text-gray-800">
+                                        <span className="mr-1 text-gray-500">{isBlock2Expanded ? <FaChevronDown /> : <FaChevronRight />}</span>
+                                        <div className="flex-1 text-gray-800">
                                           <span className="font-semibold">{block2Id} - </span>
                                           <span className="ml-1">{block2.name}</span>
                                         </div>
@@ -428,53 +448,53 @@ const DiseaseList = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex-1 max-w-4xl p-8 bg-white rounded-3xl shadow-2xl text-left"
+        className="flex-1 p-6 bg-white rounded-xl shadow-2xl text-left md:p-8 md:rounded-3xl"
       >
-        <div className="mb-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-2">
+        <div className="mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">
             {selectedDisease.Category}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => toggleFavorite(selectedDisease.code)}
-              className="ml-4 text-blue-500 hover:text-blue-400 focus:outline-none"
+              className="ml-3 text-blue-500 hover:text-blue-400 focus:outline-none"
             >
-              {isFavorite ? <FaStar size={28} /> : <FaRegStar size={28} />}
+              {isFavorite ? <FaStar size={24} /> : <FaRegStar size={24} />}
             </motion.button>
           </h2>
-          <p className="text-lg text-gray-600 mb-4">
+          <p className="text-md text-gray-600 mb-3">
             <strong className="font-semibold text-blue-800">Code:</strong> {selectedDisease.code}
           </p>
           {selectedDisease.Defination && (
-            <div className="mb-4">
-              <h3 className="text-xl font-semibold text-blue-800">Definition</h3>
-              <p className="text-gray-700 leading-relaxed">{selectedDisease.Defination}</p>
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-blue-800">Definition</h3>
+              <p className="text-gray-700 leading-relaxed text-sm md:text-base">{selectedDisease.Defination}</p>
             </div>
           )}
           {selectedDisease.synonymous && (
-            <div className="mb-4">
-              <h3 className="text-xl font-semibold text-blue-800">Synonyms</h3>
-              <p className="text-gray-700">{selectedDisease.synonymous}</p>
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-blue-800">Synonyms</h3>
+              <p className="text-gray-700 text-sm md:text-base">{selectedDisease.synonymous}</p>
             </div>
           )}
           {selectedDisease['synonymous DSM - 5'] && (
-            <div className="mb-4">
-              <h3 className="text-xl font-semibold text-blue-800">DSM-5 Synonyms</h3>
-              <p className="text-gray-700">{selectedDisease['synonymous DSM - 5']}</p>
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-blue-800">DSM-5 Synonyms</h3>
+              <p className="text-gray-700 text-sm md:text-base">{selectedDisease['synonymous DSM - 5']}</p>
             </div>
           )}
-          <div className="mt-6 border-t border-gray-200 pt-4 flex items-center justify-between">
+          <div className="mt-4 border-t border-gray-200 pt-3 flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500">
+              <p className="text-xs text-gray-500">
                 <strong className="font-medium">Chapter:</strong> {selectedDisease['Chapter Name']}
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-xs text-gray-500">
                 <strong className="font-medium">Block:</strong> {selectedDisease.BlockL1}
               </p>
             </div>
             <button
               onClick={() => setSelectedDisease(null)}
-              className="px-6 py-3 text-gray-700 bg-gray-200 rounded-full shadow-lg hover:bg-gray-300 transition-colors"
+              className="px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-full shadow-lg hover:bg-gray-300 transition-colors"
             >
               &larr; Back to List
             </button>
@@ -485,18 +505,18 @@ const DiseaseList = () => {
   };
 
   return (
-    <section id="diseaseList" className="py-8 bg-gray-50 min-h-screen text-left">
+    <section id="diseaseList" className="py-6 bg-gray-50 min-h-screen text-left">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-8"
+          className="mb-6"
         >
-          <h2 className="text-3xl md:text-5xl font-extrabold text-blue-900">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-blue-900">
             NHDD App
           </h2>
-          <p className="text-lg text-gray-600 mt-2">
+          <p className="text-sm text-gray-600 mt-1 md:text-base">
             Browse and search the NHDD classification.
           </p>
         </motion.div>
@@ -506,12 +526,12 @@ const DiseaseList = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setShowSidebar(!showSidebar)}
-          className="md:hidden flex items-center p-4 mb-4 rounded-xl shadow-md bg-blue-600 text-white w-full justify-center text-lg font-semibold"
+          className="md:hidden flex items-center p-3 mb-4 rounded-xl shadow-md bg-blue-600 text-white w-full justify-center text-sm font-semibold"
         >
           <FaBars className="mr-2" /> Browse Chapters
         </motion.button>
 
-        <div className="flex flex-col md:flex-row md:space-x-8">
+        <div className="flex flex-col md:flex-row md:space-x-6">
           {/* Mobile sidebar overlay */}
           {showSidebar && (
             <motion.div
@@ -527,45 +547,23 @@ const DiseaseList = () => {
                 exit={{ x: '-100%' }}
                 transition={{ duration: 0.3 }}
                 className="w-64 bg-white rounded-r-3xl shadow-lg p-4 h-full overflow-y-auto"
-                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+                onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-xl font-bold text-blue-900">Browse Chapters</div>
-                  <button onClick={() => setShowSidebar(false)} className="text-gray-500 hover:text-gray-700"><FaTimes size={24} /></button>
+                  <div className="text-lg font-bold text-blue-900">Browse Chapters</div>
+                  <button onClick={() => setShowSidebar(false)} className="text-gray-500 hover:text-gray-700"><FaTimes size={20} /></button>
                 </div>
                 {Object.keys(diseases.reduce((acc, d) => {
                   if (!acc[d['Chapter Name']]) acc[d['Chapter Name']] = d;
                   return acc;
                 }, {})).sort().map((chapterName, chapterIndex) => (
-                  <div key={chapterName}>
-                    <div
-                      onClick={() => toggleChapter(chapterName)}
-                      className="flex items-center p-2 rounded-md transition-colors cursor-pointer hover:bg-gray-100"
-                    >
-                      <span className="mr-2">{expandedChapters[chapterName] ? <FaChevronDown /> : <FaChevronRight />}</span>
-                      <span className="flex-1 text-sm">{chapterIndex + 1}. {chapterName}</span>
-                    </div>
-                    {expandedChapters[chapterName] && (
-                      <div className="ml-4 border-l border-gray-300">
-                        {Object.keys(diseases.filter(d => d['Chapter Name'] === chapterName).reduce((acc, d) => {
-                          if (!acc[d.BlockL1]) acc[d.BlockL1] = d;
-                          return acc;
-                        }, {})).sort().map(blockName => (
-                          <div
-                            key={blockName}
-                            onClick={() => {
-                              toggleBlock(blockName);
-                              document.getElementById(`${blockName.replace(/\s/g, '-')}`).scrollIntoView({ behavior: 'smooth' });
-                              setShowSidebar(false); // Close sidebar on selection
-                            }}
-                            className="flex items-center p-2 rounded-md transition-colors cursor-pointer hover:bg-gray-100"
-                          >
-                            <span className="mr-2">{expandedBlocks[blockName] ? <FaChevronDown /> : <FaChevronRight />}</span>
-                            <span className="flex-1 text-sm">{blockName}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                  <div
+                    key={chapterName}
+                    onClick={() => handleFilterByChapter(chapterName)}
+                    className="flex items-center p-3 rounded-md transition-colors cursor-pointer hover:bg-gray-100 text-sm"
+                  >
+                    <span className="mr-2 text-gray-500"><FaFilter /></span>
+                    <span className="flex-1">{chapterIndex + 1}. {chapterName}</span>
                   </div>
                 ))}
               </motion.div>
@@ -576,18 +574,21 @@ const DiseaseList = () => {
           {selectedDisease ? null : (
             <div className="hidden md:block">
               <div className="w-64 bg-white rounded-3xl shadow-xl p-6">
-                <div className="text-xl font-bold text-blue-900 mb-4">Browse Chapters</div>
+                <div className="text-lg font-bold text-blue-900 mb-4">Browse Chapters</div>
                 {Object.keys(diseases.reduce((acc, d) => {
                   if (!acc[d['Chapter Name']]) acc[d['Chapter Name']] = d;
                   return acc;
                 }, {})).sort().map((chapterName, chapterIndex) => (
                   <div key={chapterName}>
                     <div
-                      onClick={() => toggleChapter(chapterName)}
+                      onClick={() => {
+                        handleFilterByChapter(chapterName);
+                        toggleChapter(chapterName);
+                      }}
                       className="flex items-center p-3 rounded-xl transition-colors cursor-pointer hover:bg-gray-100"
                     >
                       <span className="mr-2">{expandedChapters[chapterName] ? <FaChevronDown /> : <FaChevronRight />}</span>
-                      <span className="flex-1 font-medium">{chapterIndex + 1}. {chapterName}</span>
+                      <span className="flex-1 font-medium text-sm">{chapterIndex + 1}. {chapterName}</span>
                     </div>
                     {expandedChapters[chapterName] && (
                       <div className="ml-4 border-l border-gray-300">
@@ -601,10 +602,10 @@ const DiseaseList = () => {
                               toggleBlock(blockName);
                               document.getElementById(`${blockName.replace(/\s/g, '-')}`).scrollIntoView({ behavior: 'smooth' });
                             }}
-                            className="flex items-center p-2 rounded-md transition-colors cursor-pointer hover:bg-gray-100"
+                            className="flex items-center p-2 rounded-md transition-colors cursor-pointer hover:bg-gray-100 text-xs"
                           >
                             <span className="mr-2">{expandedBlocks[blockName] ? <FaChevronDown /> : <FaChevronRight />}</span>
-                            <span className="flex-1 text-sm">{blockName}</span>
+                            <span className="flex-1">{blockName}</span>
                           </div>
                         ))}
                       </div>
