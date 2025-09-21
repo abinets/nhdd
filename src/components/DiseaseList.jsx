@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaChevronRight, FaChevronDown, FaStar, FaRegStar, FaBars, FaTimes, FaHistory, FaFilter, FaTimesCircle } from 'react-icons/fa';
 
 const CSV_FILE_PATH = '/icd11deaseslist.csv';
+const BACKGROUND_COLOR = '#015aa4';
 
 // Register the Service Worker for offline functionality
 if ('serviceWorker' in navigator) {
@@ -442,96 +443,90 @@ const DiseaseList = () => {
   const renderDiseaseDetails = () => {
     if (!selectedDisease) return null;
     const isFavorite = favoriteDiseases.includes(selectedDisease.code);
-
+  
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex-1 p-6 bg-white rounded-xl shadow-2xl text-left md:p-8 md:rounded-3xl"
-      >
-        <div className="mb-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">
-            {selectedDisease.Category}
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => toggleFavorite(selectedDisease.code)}
-              className="ml-3 text-blue-500 hover:text-blue-400 focus:outline-none"
-            >
-              {isFavorite ? <FaStar size={24} /> : <FaRegStar size={24} />}
-            </motion.button>
-          </h2>
-          <p className="text-md text-gray-600 mb-3">
-            <strong className="font-semibold text-blue-800">Code:</strong> {selectedDisease.code}
-          </p>
-          {selectedDisease.Defination && (
-            <div className="mb-3">
-              <h3 className="text-lg font-semibold text-blue-800">Definition</h3>
-              <p className="text-gray-700 leading-relaxed text-sm md:text-base">{selectedDisease.Defination}</p>
-            </div>
-          )}
-          {selectedDisease.synonymous && (
-            <div className="mb-3">
-              <h3 className="text-lg font-semibold text-blue-800">Synonyms</h3>
-              <p className="text-gray-700 text-sm md:text-base">{selectedDisease.synonymous}</p>
-            </div>
-          )}
-          {selectedDisease['synonymous DSM - 5'] && (
-            <div className="mb-3">
-              <h3 className="text-lg font-semibold text-blue-800">DSM-5 Synonyms</h3>
-              <p className="text-gray-700 text-sm md:text-base">{selectedDisease['synonymous DSM - 5']}</p>
-            </div>
-          )}
-          <div className="mt-4 border-t border-gray-200 pt-3 flex items-center justify-between">
-            <div>
-              <p className="text-xs text-gray-500">
-                <strong className="font-medium">Chapter:</strong> {selectedDisease['Chapter Name']}
-              </p>
-              <p className="text-xs text-gray-500">
-                <strong className="font-medium">Block:</strong> {selectedDisease.BlockL1}
-              </p>
-            </div>
+      <AnimatePresence>
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3, type: "spring", damping: 20, stiffness: 300 }}
+            className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl text-left md:rounded-3xl p-6 md:p-8 overflow-y-auto max-h-[90vh]"
+          >
             <button
               onClick={() => setSelectedDisease(null)}
-              className="px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-full shadow-lg hover:bg-gray-300 transition-colors"
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none"
             >
-              &larr; Back to List
+              <FaTimes size={24} />
             </button>
-          </div>
+  
+            <div className="mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2 pr-10">
+                {selectedDisease.Category}
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleFavorite(selectedDisease.code);
+                  }}
+                  className="ml-3 text-blue-500 hover:text-blue-400 focus:outline-none"
+                >
+                  {isFavorite ? <FaStar size={24} /> : <FaRegStar size={24} />}
+                </motion.button>
+              </h2>
+              <p className="text-md text-gray-600 mb-3">
+                <strong className="font-semibold text-blue-800">Code:</strong> {selectedDisease.code}
+              </p>
+              {selectedDisease.Defination && (
+                <div className="mb-3">
+                  <h3 className="text-lg font-semibold text-blue-800">Definition</h3>
+                  <p className="text-gray-700 leading-relaxed text-sm md:text-base">{selectedDisease.Defination}</p>
+                </div>
+              )}
+              {selectedDisease.synonymous && (
+                <div className="mb-3">
+                  <h3 className="text-lg font-semibold text-blue-800">Synonyms</h3>
+                  <p className="text-gray-700 text-sm md:text-base">{selectedDisease.synonymous}</p>
+                </div>
+              )}
+              {selectedDisease['synonymous DSM - 5'] && (
+                <div className="mb-3">
+                  <h3 className="text-lg font-semibold text-blue-800">DSM-5 Synonyms</h3>
+                  <p className="text-gray-700 text-sm md:text-base">{selectedDisease['synonymous DSM - 5']}</p>
+                </div>
+              )}
+              <div className="mt-4 border-t border-gray-200 pt-3">
+                <p className="text-xs text-gray-500">
+                  <strong className="font-medium">Chapter:</strong> {selectedDisease['Chapter Name']}
+                </p>
+                <p className="text-xs text-gray-500">
+                  <strong className="font-medium">Block:</strong> {selectedDisease.BlockL1}
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </AnimatePresence>
     );
   };
+  
 
   return (
-    <section id="diseaseList" className="py-6 bg-gray-50 min-h-screen text-left">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-6"
-        >
-          <h2 className="text-2xl md:text-4xl font-extrabold text-blue-900">
-            NHDD App
-          </h2>
-          <p className="text-sm text-gray-600 mt-1 md:text-base">
-            Browse and search the NHDD classification.
-          </p>
-        </motion.div>
-        
+    <section id="diseaseList" className="py-6 min-h-screen text-left" style={{ backgroundColor: BACKGROUND_COLOR }}>
+      <div className="w-full px-0 md:px-0">
         {/* Toggle button for mobile sidebar */}
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setShowSidebar(!showSidebar)}
-          className="md:hidden flex items-center p-3 mb-4 rounded-xl shadow-md bg-blue-600 text-white w-full justify-center text-sm font-semibold"
+          className="md:hidden flex items-center p-3 mb-4 rounded-xl shadow-md bg-blue-600 text-white w-full justify-center text-sm font-semibold relative z-20"
         >
           <FaBars className="mr-2" /> Browse Chapters
         </motion.button>
 
-        <div className="flex flex-col md:flex-row md:space-x-6">
+        <div className="flex flex-col md:flex-row">
           {/* Mobile sidebar overlay */}
           {showSidebar && (
             <motion.div
@@ -541,7 +536,7 @@ const DiseaseList = () => {
               className="fixed inset-0 z-50 bg-black bg-opacity-50 md:hidden"
               onClick={() => setShowSidebar(false)}
             >
-              <motion.div 
+              <motion.div
                 initial={{ x: '-100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
@@ -572,8 +567,8 @@ const DiseaseList = () => {
 
           {/* Desktop sidebar */}
           {selectedDisease ? null : (
-            <div className="hidden md:block">
-              <div className="w-64 bg-white rounded-3xl shadow-xl p-6">
+            <div className="hidden md:block w-72">
+              <div className="bg-white rounded-3xl shadow-xl p-6">
                 <div className="text-lg font-bold text-blue-900 mb-4">Browse Chapters</div>
                 {Object.keys(diseases.reduce((acc, d) => {
                   if (!acc[d['Chapter Name']]) acc[d['Chapter Name']] = d;
@@ -615,7 +610,9 @@ const DiseaseList = () => {
               </div>
             </div>
           )}
-          {selectedDisease ? renderDiseaseDetails() : renderDiseaseContent()}
+          <div className="flex-grow">
+            {selectedDisease ? renderDiseaseDetails() : renderDiseaseContent()}
+          </div>
         </div>
       </div>
     </section>

@@ -7,20 +7,26 @@
     "theme_color": "#003366",
     "icons": [
         {
-            "src": "https://placehold.co/192x192/003366/ffffff?text=NHDD",
-            "sizes": "192x192",
+            "src": "/logo-196.png",
+            "sizes": "196x196",
             "type": "image/png"
         },
         {
-            "src": "https://placehold.co/512x512/003366/ffffff?text=NHDD",
+            "src": "/logo-512.png",
             "sizes": "512x512",
             "type": "image/png"
         },
         {
-            "src": "https://placehold.co/180x180/003366/ffffff?text=NHDD",
+            "src": "/logo-180.png",
             "sizes": "180x180",
             "type": "image/png",
             "purpose": "apple-touch-icon"
+        },
+        {
+            "src": "/logo.png",
+            "sizes": "826x1160",
+            "type": "image/png",
+            "purpose": "any"
         }
     ]
 }

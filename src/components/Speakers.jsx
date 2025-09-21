@@ -15,14 +15,14 @@ const Speakers = () => {
       title: 'State Minister',
       institution: 'Ministry of Health, Ethiopia',
       bio:  ' H.E. Dr. Dereje Duguma is instrumental in the implementation of national health policies and the oversight of key public health programs. His work focuses on advancing healthcare access and improving health outcomes for all Ethiopians.',
-      image:  'https://www.moh.gov.et/sites/default/files/2021-09/photo_2021-09-30_14-53-06.jpg'
+      image:  '/dr_dereje_duguma.png'
     },
     {
       name: ' H.E. Frehiwot Abebe',
       title: 'State Minister',
       institution: 'Ministry of Health, Ethiopia',
       bio: 'H.E. Frehiwot Abebe is the State Minister of Health, leading the Resource, Administration, and Regulatory Wing. She oversees key areas such as the pharmaceutical supply chain, professional regulation, and the Ethiopian Health Insurance Service, where she was previously the Director General.',
-      image:  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvEE6mzH-4ukgRCo-7KEXJE55MWJP6-O3EsA&s'
+      image:  '/frehiwot_abebe.png'
     },
     {
       name: 'H.E. Sahrela Abdulahi',
@@ -34,7 +34,7 @@ const Speakers = () => {
   ];
 
   return (
-    <section id="speakers" className="py-20 bg-white" style={{ scrollMarginTop: '80px' }}>
+    <section id="speakers" className="py-20 bg-[#015aa4]" style={{ scrollMarginTop: '80px' }}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -43,10 +43,10 @@ const Speakers = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Featured Speakers
           </h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+          <p className="text-lg text-white max-w-3xl mx-auto">
             Learn from world-renowned experts who are shaping the future of Health care medicine
           </p>
         </motion.div>
@@ -60,7 +60,7 @@ const Speakers = () => {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -10 }}
-              className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-[#0273a4]/70 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -70,17 +70,17 @@ const Speakers = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-blue-900 mb-2">
+              <div className="p-6 text-white">
+                <h3 className="text-xl font-bold mb-2">
                   {speaker.name}
                 </h3>
-                <p className="text-blue-600 font-semibold mb-1">
+                <p className="text-cyan-200 font-semibold mb-1">
                   {speaker.title}
                 </p>
-                <p className="text-gray-600 text-sm mb-3">
+                <p className="text-white text-sm mb-3">
                   {speaker.institution}
                 </p>
-                <p className="text-gray-700 text-sm leading-relaxed">
+                <p className="text-white text-sm leading-relaxed">
                   {speaker.bio}
                 </p>
               </div>
