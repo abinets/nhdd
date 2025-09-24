@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaChevronRight, FaChevronDown, FaStar, FaRegStar, FaBars, FaTimes, FaHistory, FaFilter, FaTimesCircle } from 'react-icons/fa';
+import { FaChevronRight, FaChevronDown, FaStar, FaRegStar, FaBars, FaTimes, FaHistory, FaFilter, FaTimesCircle, FaListUl, FaSitemap } from 'react-icons/fa';
 
 const CSV_FILE_PATH = '/icd11deaseslist.csv';
 const BACKGROUND_COLOR = '#015aa4';
@@ -31,9 +31,10 @@ const DiseaseList = () => {
   const [searchHistory, setSearchHistory] = useState([]);
   const [showHistoryDropdown, setShowHistoryDropdown] = useState(false);
   const [selectedChapter, setSelectedChapter] = useState(null);
+  const [showFlatList, setShowFlatList] = useState(false); 
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Load favorites and search history from local storage on initial render
     const storedFavorites = JSON.parse(localStorage.getItem('favoriteDiseases') || '[]');
     setFavoriteDiseases(storedFavorites);
 
@@ -46,12 +47,33 @@ const DiseaseList = () => {
       complete: (result) => {
         const data = result.data.filter(d => d.Category);
         setDiseases(data);
+        setIsLoading(false);
       },
       error: (error) => {
-        console.error('Error parsing CSV:', error);
+        console.error('Error parsing CSV. **CHECK NETWORK TAB FOR 404 ON CSV FILE**:', error);
+        setIsLoading(false);
       },
     });
   }, []);
+
+  // **********************************************************
+  // FIX: SCROLL LOCK EFFECT
+  // **********************************************************
+  useEffect(() => {
+    if (selectedDisease) {
+      // Add a class to the body to prevent scrolling
+      document.body.classList.add('overflow-hidden');
+    } else {
+      // Remove the class when the modal is closed
+      document.body.classList.remove('overflow-hidden');
+      // Scroll to the top when the modal closes
+      window.scrollTo(0, 0); 
+    }
+    // Cleanup function to ensure the class is removed if the component unmounts unexpectedly
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [selectedDisease]);
 
   const toggleFavorite = (diseaseCode) => {
     const isFavorite = favoriteDiseases.includes(diseaseCode);
@@ -68,7 +90,7 @@ const DiseaseList = () => {
 
   const updateSearchHistory = (term) => {
     if (term.trim() === '') return;
-    const updatedHistory = [term, ...searchHistory.filter(h => h !== term)].slice(0, 5); // Keep up to 5 items
+    const updatedHistory = [term, ...searchHistory.filter(h => h !== term)].slice(0, 5); 
     setSearchHistory(updatedHistory);
     localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
   };
@@ -76,11 +98,15 @@ const DiseaseList = () => {
   const handleSearchChange = (e) => {
     const newTerm = e.target.value;
     setSearchTerm(newTerm);
+    if (newTerm.length > 0 && !showFlatList) {
+        setShowFlatList(true);
+    }
   };
 
   const handleSearchHistoryClick = (term) => {
     setSearchTerm(term);
     setShowHistoryDropdown(false);
+    setShowFlatList(true);
   };
 
   const handleClearHistory = () => {
@@ -91,6 +117,7 @@ const DiseaseList = () => {
   const handleFilterByChapter = (chapterId) => {
     setSelectedChapter(chapterId);
     setShowSidebar(false);
+    setShowFlatList(false);
   };
 
   const handleClearFilter = () => {
@@ -127,8 +154,9 @@ const DiseaseList = () => {
           if (index === 0) {
             fullCode = part;
           } else {
-            fullCode += `.${part}`;
+            fullCode = fullCode.replace(/\.$/, '') + (part ? `.${part}` : '');
           }
+          
           if (!currentLevel[fullCode]) {
             currentLevel[fullCode] = { children: {}, details: null };
           }
@@ -194,10 +222,11 @@ const DiseaseList = () => {
                 toggleBlock(code);
               } else if (isSelectable) {
                 setSelectedDisease(disease);
+                updateSearchHistory(disease.code);
               }
             }}
             className={`flex items-center p-3 rounded-md transition-colors ${
-              isSelectable ? 'cursor-pointer hover:bg-gray-100' : ''
+              isSelectable || hasChildren ? 'cursor-pointer hover:bg-gray-100' : ''
             } ${isExpanded && hasChildren ? 'font-bold' : ''}`}
           >
             {hasChildren && (
@@ -217,7 +246,7 @@ const DiseaseList = () => {
                   e.stopPropagation();
                   toggleFavorite(disease.code);
                 }}
-                className="ml-2 text-blue-500 hover:text-blue-400 focus:outline-none"
+                className="ml-2 text-orange-500 hover:text-orange-400 focus:outline-none"
               >
                 {isFavorite ? <FaStar /> : <FaRegStar />}
               </button>
@@ -233,7 +262,178 @@ const DiseaseList = () => {
     });
   };
 
+  const renderFlatList = (diseases) => {
+    return (
+      <div className="bg-white rounded-xl shadow-2xl overflow-hidden md:rounded-3xl">
+        {diseases.length > 0 ? (
+          diseases.sort((a, b) => a.code.localeCompare(b.code)).map((disease, index) => {
+            const isFavorite = favoriteDiseases.includes(disease.code);
+            return (
+              <motion.div
+                key={disease.code + index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.01 }}
+                onClick={() => {
+                  setSelectedDisease(disease);
+                  updateSearchHistory(disease.code);
+                }}
+                className="flex items-start p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex-1 text-left">
+                  {/* Code and Name on one line - uses minimal ml-2 for separation */}
+                  <div className="flex items-start"> 
+                    <p className="font-bold text-blue-800 text-base md:text-lg">
+                      {disease.code}
+                    </p>
+                    <p className="text-gray-700 text-sm md:text-base flex-1 pt-0.5 ml-2">
+                      {disease.Category}
+                    </p>
+                  </div>
+                  
+                  {/* Chapter/Block details below */}
+                  {disease.BlockL1 && (
+                    <p className="text-xs text-gray-500 mt-1">
+                      <span className="font-medium">{disease['Chapter Name']}</span> / <span className="italic">{disease.BlockL1}</span>
+                    </p>
+                  )}
+                </div>
+                
+                {/* Favorite button (Orange star color) */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleFavorite(disease.code);
+                  }}
+                  className="ml-4 text-orange-500 hover:text-orange-400 focus:outline-none"
+                >
+                  {isFavorite ? <FaStar size={18} /> : <FaRegStar size={18} />}
+                </button>
+              </motion.div>
+            );
+          })
+        ) : (
+          <p className="p-4 text-center text-gray-600">
+            No results found matching your criteria.
+          </p>
+        )}
+      </div>
+    );
+  };
+
+
   const renderDiseaseContent = () => {
+    const controlPanel = (
+        <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mb-6 relative">
+            {/* Search Bar */}
+            <div className="relative flex-1 mb-4 sm:mb-0">
+                <input
+                type="text"
+                placeholder="Search by name, code or synonym..."
+                className="w-full p-3 pr-16 text-base border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all text-sm md:text-base"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                onBlur={() => setTimeout(() => setShowHistoryDropdown(false), 200)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                    updateSearchHistory(searchTerm);
+                    }
+                }}
+                />
+                {searchTerm && (
+                <button
+                    onClick={() => {
+                    setSearchTerm('');
+                    updateSearchHistory(searchTerm);
+                    }}
+                    className="absolute right-10 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+                >
+                    <FaTimes />
+                </button>
+                )}
+                <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setShowHistoryDropdown(!showHistoryDropdown);
+                }}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+                >
+                <FaHistory />
+                </motion.button>
+                {showHistoryDropdown && searchHistory.length > 0 && (
+                <div className="absolute z-10 w-full mt-2 bg-white rounded-lg shadow-xl border border-gray-200 py-1">
+                    {searchHistory.map((historyItem, index) => (
+                    <button
+                        key={index}
+                        onMouseDown={() => handleSearchHistoryClick(historyItem)}
+                        className="w-full text-left px-3 py-1 text-sm hover:bg-gray-100 transition-colors"
+                    >
+                        {historyItem}
+                    </button>
+                    ))}
+                    <div className="border-t border-gray-200 mt-1 pt-1">
+                    <button
+                        onMouseDown={handleClearHistory}
+                        className="w-full text-center text-xs text-red-500 hover:text-red-700 px-3 py-1 transition-colors"
+                    >
+                        Clear History
+                    </button>
+                    </div>
+                </div>
+                )}
+            </div>
+            
+            {/* Buttons container for mobile layout */}
+            <div className="flex justify-between flex-wrap sm:flex-nowrap sm:space-x-4 w-full sm:w-auto">
+
+                {/* Flat List Toggle Button */}
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowFlatList(!showFlatList)}
+                    className={`flex items-center justify-center p-3 text-sm font-semibold rounded-xl shadow-md transition-colors duration-300 w-[48%] sm:w-auto mb-3 sm:mb-0 ${
+                    showFlatList ? 'bg-green-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
+                    }`}
+                >
+                    {showFlatList ? <FaSitemap className="mr-2" /> : <FaListUl className="mr-2" />}
+                    {showFlatList ? 'Block List' : 'Flat List'}
+                </motion.button>
+
+                {/* Favorites Button */}
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowFavorites(!showFavorites)}
+                    className={`flex items-center justify-center p-3 text-sm font-semibold rounded-xl shadow-md transition-colors duration-300 w-[48%] sm:w-auto mb-3 sm:mb-0 ${
+                    showFavorites 
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-white text-blue-600 hover:bg-blue-50'
+                    }`}
+                >
+                    {showFavorites 
+                        ? <FaStar className="mr-2 text-white" /> 
+                        : <FaRegStar className="mr-2 text-orange-500" />
+                    }
+                    {showFavorites ? 'Show All' : 'My Favorites'}
+                </motion.button>
+            </div>
+        </div>
+    );
+
+    // Render flat list if the toggle is active
+    if (showFlatList) {
+        return (
+            <div className="flex-1 p-4 md:p-8 text-left">
+                {controlPanel}
+                {renderFlatList(filteredDiseases)}
+            </div>
+        );
+    }
+    
+    // --- Hierarchical View Logic ---
+    
     const groupedDiseases = filteredDiseases.reduce((acc, current) => {
       const chapter = current['Chapter Name'];
       const blockId = current.BlockL1_Id;
@@ -245,7 +445,7 @@ const DiseaseList = () => {
         acc[chapter] = { blocks: {} };
       }
       if (!acc[chapter].blocks[blockId]) {
-        acc[chapter].blocks[blockId] = { name: blockName, block2s: {} };
+        acc[chapter].blocks[blockId] = { name: blockName, block2s: {}, diseases: [] };
       }
       if (block2Id && block2Id !== blockId) {
         if (!acc[chapter].blocks[blockId].block2s[block2Id]) {
@@ -265,77 +465,7 @@ const DiseaseList = () => {
 
     return (
       <div className="flex-1 p-4 md:p-8 text-left">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mb-6 relative">
-          <div className="relative flex-1 mb-4 sm:mb-0">
-            <input
-              type="text"
-              placeholder="Search by name, code or synonym..."
-              className="w-full p-3 pr-16 text-base border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all text-sm md:text-base"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              onBlur={() => setTimeout(() => setShowHistoryDropdown(false), 200)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  updateSearchHistory(searchTerm);
-                }
-              }}
-            />
-            {searchTerm && (
-              <button
-                onClick={() => {
-                  setSearchTerm('');
-                  updateSearchHistory(searchTerm);
-                }}
-                className="absolute right-10 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
-              >
-                <FaTimes />
-              </button>
-            )}
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowHistoryDropdown(!showHistoryDropdown);
-              }}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
-            >
-              <FaHistory />
-            </motion.button>
-            {showHistoryDropdown && searchHistory.length > 0 && (
-              <div className="absolute z-10 w-full mt-2 bg-white rounded-lg shadow-xl border border-gray-200 py-1">
-                {searchHistory.map((historyItem, index) => (
-                  <button
-                    key={index}
-                    onMouseDown={() => handleSearchHistoryClick(historyItem)}
-                    className="w-full text-left px-3 py-1 text-sm hover:bg-gray-100 transition-colors"
-                  >
-                    {historyItem}
-                  </button>
-                ))}
-                <div className="border-t border-gray-200 mt-1 pt-1">
-                  <button
-                    onMouseDown={handleClearHistory}
-                    className="w-full text-center text-xs text-red-500 hover:text-red-700 px-3 py-1 transition-colors"
-                  >
-                    Clear History
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setShowFavorites(!showFavorites)}
-            className={`flex items-center justify-center p-3 text-sm font-semibold rounded-xl shadow-md transition-colors duration-300 w-full sm:w-auto ${
-              showFavorites ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
-            }`}
-          >
-            {showFavorites ? <FaStar className="mr-2" /> : <FaRegStar className="mr-2" />}
-            {showFavorites ? 'Show All' : 'My Favorites'}
-          </motion.button>
-        </div>
+        {controlPanel}
         <div className="bg-white rounded-xl shadow-2xl overflow-hidden md:rounded-3xl">
           {selectedChapter && (
             <div className="flex items-center justify-between p-4 bg-gray-100 border-b border-gray-200">
@@ -358,8 +488,7 @@ const DiseaseList = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: chapterIndex * 0.1 }}
-                whileHover={{ y: -5, x: 5, scale: 1.01 }}
-                className="my-3 overflow-hidden shadow-md"
+                className="my-3 overflow-hidden shadow-md border border-gray-200 rounded-xl"
               >
                 <div
                   onClick={() => toggleChapter(chapterName)}
@@ -381,7 +510,7 @@ const DiseaseList = () => {
                         <div key={blockId}>
                           <div
                             onClick={() => toggleBlock(blockId)}
-                            className="flex items-center justify-between p-3 pl-6 bg-gray-100 cursor-pointer hover:bg-gray-200 text-sm"
+                            className="flex items-center justify-between p-3 pl-6 bg-gray-100 cursor-pointer hover:bg-gray-200 text-sm border-t border-gray-200"
                           >
                             <h4 className="font-medium text-gray-800">
                               <span className="font-semibold text-gray-900">{blockId} - </span>
@@ -471,7 +600,7 @@ const DiseaseList = () => {
                     e.stopPropagation();
                     toggleFavorite(selectedDisease.code);
                   }}
-                  className="ml-3 text-blue-500 hover:text-blue-400 focus:outline-none"
+                  className="ml-3 text-orange-500 hover:text-orange-400 focus:outline-none"
                 >
                   {isFavorite ? <FaStar size={24} /> : <FaRegStar size={24} />}
                 </motion.button>
@@ -513,6 +642,16 @@ const DiseaseList = () => {
   };
   
 
+  if (isLoading) {
+    return (
+        <section className="py-6 min-h-screen flex items-center justify-center" style={{ backgroundColor: BACKGROUND_COLOR }}>
+            <div className="text-white text-xl">
+                Loading ICD-11 Data...
+            </div>
+        </section>
+    );
+  }
+
   return (
     <section id="diseaseList" className="py-6 min-h-screen text-left" style={{ backgroundColor: BACKGROUND_COLOR }}>
       <div className="w-full px-0 md:px-0">
@@ -527,7 +666,7 @@ const DiseaseList = () => {
         </motion.button>
 
         <div className="flex flex-col md:flex-row">
-          {/* Mobile sidebar overlay */}
+          {/* Mobile sidebar overlay (unchanged) */}
           {showSidebar && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -568,7 +707,7 @@ const DiseaseList = () => {
           {/* Desktop sidebar */}
           {selectedDisease ? null : (
             <div className="hidden md:block w-72">
-              <div className="bg-white rounded-3xl shadow-xl p-6">
+              <div className="bg-white rounded-3xl shadow-xl p-6 sticky top-6">
                 <div className="text-lg font-bold text-blue-900 mb-4">Browse Chapters</div>
                 {Object.keys(diseases.reduce((acc, d) => {
                   if (!acc[d['Chapter Name']]) acc[d['Chapter Name']] = d;
@@ -594,12 +733,14 @@ const DiseaseList = () => {
                           <div
                             key={blockName}
                             onClick={() => {
-                              toggleBlock(blockName);
-                              document.getElementById(`${blockName.replace(/\s/g, '-')}`).scrollIntoView({ behavior: 'smooth' });
+                                const targetBlock = document.querySelector(`[data-block-id="${blockName}"]`);
+                                if (targetBlock) {
+                                    targetBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }
                             }}
                             className="flex items-center p-2 rounded-md transition-colors cursor-pointer hover:bg-gray-100 text-xs"
                           >
-                            <span className="mr-2">{expandedBlocks[blockName] ? <FaChevronDown /> : <FaChevronRight />}</span>
+                            <span className="mr-2"><FaChevronRight /></span>
                             <span className="flex-1">{blockName}</span>
                           </div>
                         ))}
